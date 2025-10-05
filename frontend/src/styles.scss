@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
+html, body { 
+  height: 100%; 
+  margin: 0;
+}
+
+@layer components {
+  /* Composants globaux réutilisables */
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500 text-white
+           py-3 px-6 rounded-lg font-medium cursor-pointer
+           hover:from-primary-600 hover:to-secondary-600 
+           hover:-translate-y-0.5 hover:shadow-lg
+           disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none
+           transition-all duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-500 text-white py-3 px-6 rounded-lg font-medium
+           hover:bg-gray-600 transition-colors duration-200
+           disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+  
+  .form-input {
+    @apply w-full px-3 py-3 border-2 border-gray-300 rounded-lg text-base
+           focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-100
+           transition-all duration-200 invalid:border-red-500;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+  }
+  
+  .alert-success {
+    @apply p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-lg overflow-hidden;
+  }
+  
+  .card-header {
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-6 py-6 text-center;
+  }
+
+  /* App Components */
+  .app-container {
+    @apply min-h-screen flex flex-col bg-gray-50;
+  }
+  
+  .app-header {
+    @apply bg-gradient-to-br from-primary-500 to-secondary-500 text-white py-8 text-center shadow-lg;
+    
+    h1 {
+      @apply text-4xl font-light m-0;
+    }
+    
+    p {
+      @apply text-lg opacity-90 mt-2 mb-0;
+    }
+  }
+  
+  .app-main {
+    @apply flex-1 bg-gray-50;
+  }
+
+  /* Expense Components */
+  .expense-container {
+    @apply max-w-2xl mx-auto mt-8 px-4;
+  }
+  
+  .expense-card {
+    @apply bg-white rounded-xl shadow-lg overflow-hidden;
+  }
+  
+  .expense-form {
+    @apply p-8;
+  }
+  
+  .expense-form__group {
+    @apply mb-6;
+  }
+  
+  .expense-form__actions {
+    @apply flex flex-col sm:flex-row gap-4 mt-8;
+  }
+  
+  .expense-preview {
+    @apply mt-8 p-6 bg-gray-50 rounded-lg border-l-4 border-primary-500;
+  }
+  
+  .expense-preview__title {
+    @apply text-lg font-medium text-gray-800 mb-4;
+  }
+  
+  .expense-preview__content {
+    @apply space-y-2;
+    
+    p {
+      @apply text-gray-700;
+      
+      .label {
+        @apply font-medium text-primary-600;
+      }
+    }
+  }
+}

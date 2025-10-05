@@ -1,0 +1,21 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background rond avec gradient -->
+  <rect width="32" height="32" rx="6" fill="url(#gradient)"/>
+  
+  <!-- Symbole dollar stylisé -->
+  <path d="M16 4 L16 6 M16 26 L16 28 M12 8 L20 8 C21.5 8 22 9.5 22 11 C22 12.5 21.5 14 20 14 L12 14 M12 14 L20 14 C21.5 14 22 15.5 22 17 C22 18.5 21.5 20 20 20 L12 20 M10 20 L20 20" 
+        stroke="white" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        fill="none"/>
+  
+  <!-- Ligne verticale du $ -->
+  <line x1="16" y1="6" x2="16" y2="26" stroke="white" stroke-width="2" stroke-linecap="round"/>
+</svg>
