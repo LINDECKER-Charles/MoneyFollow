@@ -26,8 +26,6 @@ cd backend
 # Installer les dépendances Maven
 mvn clean install
 
-# Alternative si Maven n'est pas installé globalement
-./mvnw clean install
 ```
 
 ### Frontend (Angular)
@@ -37,23 +35,6 @@ cd frontend
 
 # Installer les dépendances npm
 npm install
-
-# Alternative avec yarn (si installé)
-yarn install
-```
-
-## 🐳 Configuration PostgreSQL avec Docker
-
-```powershell
-# Démarrer PostgreSQL avec Docker Compose
-docker compose up postgres
-sg docker -c "docker compose up postgres"
-
-# Vérifier que le conteneur fonctionne
-docker ps
-
-# Arrêter PostgreSQL
-docker compose down
 ```
 
 ## 🚀 Démarrage des applications
@@ -65,10 +46,7 @@ cd backend
 # Démarrer l'API Spring Boot
 mvn spring-boot:run
 
-# Alternative avec le wrapper
-./mvnw spring-boot:run
-
-# L'API sera disponible sur : http://localhost:8080
+# L'API sera disponible sur : http://localhost:8085
 ```
 
 ### Frontend (Angular)
@@ -78,9 +56,6 @@ cd frontend
 # Démarrer le serveur de développement Angular
 npm install -g @angular/cli
 ng serve
-
-# Alternative avec npm
-npm start
 
 # L'application sera disponible sur : http://localhost:4200
 ```

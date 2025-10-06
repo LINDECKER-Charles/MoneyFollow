@@ -1,9 +1,12 @@
 package com.moneyfollow.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.util.List;
 
 @Entity
+@Data
 @Table(name = "categories")
 public class Category {
 

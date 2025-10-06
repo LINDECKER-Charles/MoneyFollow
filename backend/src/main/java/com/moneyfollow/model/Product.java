@@ -1,11 +1,14 @@
 package com.moneyfollow.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Data
 @Table(name = "products")
 public class Product {
 
