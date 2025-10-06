@@ -1,0 +1,43 @@
+Sub Create_Tables()
+
+DoCmd.RunSQL "CREATE TABLE Users(" & _
+   "id_user INT," & _
+   "name VARCHAR(50) NOT NULL," & _
+   "email VARCHAR(254) NOT NULL," & _
+   "password VARCHAR(50) NOT NULL," & _
+   "role json," & _
+   "createdAt DATETIME NOT NULL," & _
+   "PRIMARY KEY(id_user)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Products(" & _
+   "id_product INT," & _
+   "name VARCHAR(255) NOT NULL," & _
+   "description TEXT," & _
+   "createdAt DATETIME NOT NULL," & _
+   "imagePath TEXT," & _
+   "currency VARCHAR(20) NOT NULL," & _
+   "price DECIMAL(15,2) NOT NULL," & _
+   "id_user INT NOT NULL," & _
+   "PRIMARY KEY(id_product)," & _
+   "FOREIGN KEY(id_user) REFERENCES Users(id_user)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE Categories(" & _
+   "id_category INT," & _
+   "name VARCHAR(100) NOT NULL," & _
+   "description TEXT," & _
+   "id_user INT NOT NULL," & _
+   "PRIMARY KEY(id_category)," & _
+   "FOREIGN KEY(id_user) REFERENCES Users(id_user)" & _
+");"   
+
+DoCmd.RunSQL "CREATE TABLE TRIER(" & _
+   "id_product INT," & _
+   "id_category INT," & _
+   "PRIMARY KEY(id_product, id_category)," & _
+   "FOREIGN KEY(id_product) REFERENCES Products(id_product)," & _
+   "FOREIGN KEY(id_category) REFERENCES Categories(id_category)" & _
+");"   
+
+End Sub

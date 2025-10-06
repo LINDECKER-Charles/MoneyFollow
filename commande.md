@@ -47,6 +47,7 @@ yarn install
 ```powershell
 # Démarrer PostgreSQL avec Docker Compose
 docker compose up postgres
+sg docker -c "docker compose up postgres"
 
 # Vérifier que le conteneur fonctionne
 docker ps
