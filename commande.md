@@ -46,13 +46,13 @@ yarn install
 
 ```powershell
 # Démarrer PostgreSQL avec Docker Compose
-docker-compose up -d postgres
+docker compose up postgres
 
 # Vérifier que le conteneur fonctionne
 docker ps
 
 # Arrêter PostgreSQL
-docker-compose down
+docker compose down
 ```
 
 ## 🚀 Démarrage des applications
