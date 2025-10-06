@@ -1,63 +1,39 @@
 package com.moneyfollow.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "Users")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_user")
-    private Integer idUser;
+    private Long id;
 
-    @Column(name = "name", nullable = false, length = 50)
-    @NotBlank(message = "Le nom est obligatoire")
-    @Size(max = 50, message = "Le nom ne peut pas dépasser 50 caractères")
+    @Column(nullable = false, length = 50)
     private String name;
 
-    @Column(name = "email", nullable = false, length = 254)
-    @NotBlank(message = "L'email est obligatoire")
-    @Email(message = "Format d'email invalide")
-    @Size(max = 254, message = "L'email ne peut pas dépasser 254 caractères")
+    @Column(nullable = false, length = 254, unique = true)
     private String email;
 
-    @Column(name = "password", nullable = false, length = 50)
-    @NotBlank(message = "Le mot de passe est obligatoire")
-    @Size(max = 50, message = "Le mot de passe ne peut pas dépasser 50 caractères")
+    @Column(nullable = false, length = 50)
     private String password;
 
-    @Column(name = "role", columnDefinition = "json")
+    @Column(columnDefinition = "json")
     private String role;
 
-    @Column(name = "createdAt", nullable = false)
-    @NotNull(message = "La date de création est obligatoire")
-    private LocalDateTime createdAt;
-
-    @Column(name = "isVerified", nullable = false)
-    private Boolean isVerified = false;
+    @Column(nullable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     // Relations
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Product> products;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Product> products;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Category> categories;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Category> categories;
 
-    @PrePersist
-    protected void onCreate() {
-        if (createdAt == null) {
-            createdAt = LocalDateTime.now();
-        }
-    }
+    // Getters & setters
 }
