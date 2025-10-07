@@ -46,7 +46,7 @@ cd backend
 # Démarrer l'API Spring Boot
 mvn spring-boot:run
 
-# L'API sera disponible sur : http://localhost:8085
+# L'API sera disponible sur : http://localhost:8000
 ```
 
 ### Frontend (Angular)
