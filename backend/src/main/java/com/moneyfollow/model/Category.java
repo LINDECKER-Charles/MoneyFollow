@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,8 +31,9 @@ public class Category {
 
     @ManyToOne
     @JoinColumn(name = "id_user", nullable = false)
+    @JsonBackReference
     private User user;
-
+    
     @ManyToMany(mappedBy = "categories")
     private List<Product> products;
 
