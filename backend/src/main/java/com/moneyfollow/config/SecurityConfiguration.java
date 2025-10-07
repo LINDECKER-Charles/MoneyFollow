@@ -30,7 +30,6 @@ public class SecurityConfiguration {
                 .requestMatchers("/auth/**").permitAll() // routes publiques
                 .anyRequest().authenticated()            // le reste requiert un token
             )
-            .formLogin(Customizer.withDefaults())
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )

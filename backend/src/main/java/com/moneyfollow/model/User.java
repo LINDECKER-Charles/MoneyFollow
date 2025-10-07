@@ -37,6 +37,14 @@ public class User implements UserDetails {
     @Column(nullable = false, length = 255)
     private String password;
 
+    @Builder.Default
+    @Column(nullable = false)
+    private boolean isVerified = false;
+
+    @Builder.Default
+    @Column(nullable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
+
     // Relations
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Product> products;
