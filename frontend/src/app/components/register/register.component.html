@@ -1,0 +1,82 @@
+<div class="min-h-screen flex items-center justify-center bg-[#25282D] text-[#F3F6F7]">
+  <div class="w-full max-w-md bg-[#30353B] p-8 rounded-2xl shadow-lg">
+    <h2 class="text-2xl font-semibold text-center mb-6 text-[#E2A411]">
+      Créer un compte
+    </h2>
+
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="space-y-4">
+      <!-- Nom d'utilisateur -->
+      <div>
+        <label for="username" class="block text-sm font-medium mb-1 text-[#BDC1C7]">
+          Nom d'utilisateur
+        </label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="username"
+          required
+          placeholder="ex: Pseudo123"
+          class="w-full px-4 py-2 rounded-lg bg-[#25282D] border border-[#3A3F46] text-[#F3F6F7] placeholder-[#888C96] focus:outline-none focus:ring-2 focus:ring-[#E2A411] focus:border-transparent transition"
+        />
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium mb-1 text-[#BDC1C7]">
+          Adresse e-mail
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          placeholder="ex: your.mail@mail.com"
+          class="w-full px-4 py-2 rounded-lg bg-[#25282D] border border-[#3A3F46] text-[#F3F6F7] placeholder-[#888C96] focus:outline-none focus:ring-2 focus:ring-[#E2A411] focus:border-transparent transition"
+        />
+      </div>
+
+      <!-- Mot de passe -->
+      <div>
+        <label for="password" class="block text-sm font-medium mb-1 text-[#BDC1C7]">
+          Mot de passe
+        </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          placeholder="••••••••"
+          class="w-full px-4 py-2 rounded-lg bg-[#25282D] border border-[#3A3F46] text-[#F3F6F7] placeholder-[#888C96] focus:outline-none focus:ring-2 focus:ring-[#E2A411] focus:border-transparent transition"
+        />
+      </div>
+
+      <!-- Message d'erreur -->
+      <p *ngIf="errorMessage" class="text-[#ff6666] text-center text-sm font-semibold">
+        {{ errorMessage }}
+      </p>
+
+      <!-- Bouton -->
+      <button
+        type="submit"
+        [disabled]="registerForm.invalid"
+        class="w-full py-2.5 rounded-lg font-bold text-[#1B1C1C] bg-[#E2A411] hover:bg-[#f1b624] transition disabled:bg-[#555] disabled:text-[#BDC1C7] disabled:cursor-not-allowed"
+      >
+        Créer un compte
+      </button>
+    </form>
+
+    <!-- Lien vers la connexion -->
+    <div class="mt-6 text-center text-sm text-[#BDC1C7]">
+      <span>Déjà un compte ?</span>
+      <a
+        routerLink="/login"
+        class="text-[#E2A411] hover:text-[#f1b624] font-medium transition"
+      >
+        Connectez-vous
+      </a>
+    </div>
+  </div>
+</div>

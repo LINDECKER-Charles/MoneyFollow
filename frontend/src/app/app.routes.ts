@@ -1,7 +1,12 @@
 import { Routes } from '@angular/router';
-import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
+import { NoAuthGuard } from './guards/no-auth.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/register', pathMatch: 'full' },
-  { path: 'register', component: RegisterComponent }
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [NoAuthGuard] },
+  { path: 'home', component: HomeComponent }
 ];

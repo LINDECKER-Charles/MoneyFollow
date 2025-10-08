@@ -49,6 +49,7 @@ public class User implements UserDetails {
 
     // Relations
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Product> products;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
