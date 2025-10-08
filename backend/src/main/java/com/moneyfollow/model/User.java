@@ -32,9 +32,6 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(nullable = false, length = 255)
-    private String username;
-
-    @Column(nullable = true, length = 255)
     private String name;
 
     @Column(nullable = false, length = 254, unique = true)

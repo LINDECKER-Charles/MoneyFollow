@@ -16,11 +16,28 @@ export class RegisterComponent {
   email = '';
   username = '';
   password = '';
+  passwordConfirm = '';
+  passwordMismatch = false;
+  showPassword = false;
+  showConfirm = false;
   errorMessage = '';
+  
 
   constructor(private authService: AuthService, private router: Router) {}
  
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+  toggleConfirmVisibility() {
+    this.showConfirm = !this.showConfirm;
+  }
+
   onSubmit(): void {
+    if (this.password !== this.passwordConfirm) {
+      this.passwordMismatch = true;
+      return;
+    }
+    this.passwordMismatch = false;
     this.authService.register(this.email, this.password, this.username).subscribe({
       next: () => {
         console.log('✅ Inscription réussie');

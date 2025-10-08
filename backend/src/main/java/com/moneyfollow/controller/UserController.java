@@ -24,7 +24,7 @@ public class UserController {
         if (user == null) {
             return ResponseEntity.status(401).build();
         }
-
+        /* System.out.println(user.getName()); */
         return ResponseEntity.ok(user);
     }
     
