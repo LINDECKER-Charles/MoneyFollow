@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.moneyfollow.model.Role;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -50,10 +52,16 @@ public class User implements UserDetails {
     private List<Product> products;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Category> categories;
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
