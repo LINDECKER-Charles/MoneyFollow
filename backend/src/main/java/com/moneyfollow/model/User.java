@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.moneyfollow.model.Role;
 
@@ -33,6 +34,9 @@ public class User implements UserDetails {
     @Column(nullable = false, length = 255)
     private String username;
 
+    @Column(nullable = true, length = 255)
+    private String name;
+
     @Column(nullable = false, length = 254, unique = true)
     private String email;
 
@@ -49,11 +53,13 @@ public class User implements UserDetails {
 
     // Relations
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference("user-products")
+    @JsonIgnore
     private List<Product> products;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference("user-categories")
+    @JsonIgnore
     private List<Category> categories;
 
     @Enumerated(EnumType.STRING)

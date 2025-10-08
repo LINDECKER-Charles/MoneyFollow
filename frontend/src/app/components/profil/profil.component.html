@@ -1,0 +1,50 @@
+<div class="min-h-screen flex items-center justify-center bg-[#25282D] text-[#BDC1C7] p-8">
+  <div class="bg-[#30353B] rounded-2xl shadow-lg w-full max-w-lg p-8">
+    <div *ngIf="loading" class="text-center text-[#888C96]">Chargement...</div>
+    <div *ngIf="error" class="text-center text-red-400 font-semibold">{{ error }}</div>
+
+    <div *ngIf="user && !loading && !error">
+      <div class="flex items-center space-x-4 mb-6 border-b border-[#888C96]/30 pb-4">
+        <div class="w-20 h-20 rounded-full bg-[#E2A411]/20 flex items-center justify-center text-[#E2A411] text-3xl font-bold">
+          {{ user.name ? user.name.charAt(0).toUpperCase() : 'U' }}
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold">{{ user.name || 'Utilisateur' }}</h1>
+          <p class="text-[#888C96] text-sm">{{ user.email }}</p>
+        </div>
+      </div>
+
+      <div class="space-y-3 text-sm">
+        <div class="flex justify-between">
+          <span class="text-[#888C96]">Identifiant :</span>
+          <span>{{ user.id }}</span>
+        </div>
+
+        <div class="flex justify-between">
+          <span class="text-[#888C96]">Rôle :</span>
+          <span class="px-2 py-1 bg-[#E2A411]/20 text-[#E2A411] rounded-md text-xs font-semibold">
+            {{ user.role }}
+          </span>
+        </div>
+
+        <div class="flex justify-between">
+          <span class="text-[#888C96]">Compte vérifié :</span>
+          <span [ngClass]="user.verified ? 'text-green-400' : 'text-red-400'">
+            {{ user.verified ? 'Oui' : 'Non' }}
+          </span>
+        </div>
+
+        <div class="flex justify-between">
+          <span class="text-[#888C96]">Créé le :</span>
+          <span>{{ user.createdAt | date:'medium' }}</span>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <button class="bg-[#E2A411] hover:bg-[#e0a000] text-[#1B1C1C] font-semibold px-4 py-2 rounded-xl w-full">
+          Modifier le profil
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
