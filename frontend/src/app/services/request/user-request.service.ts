@@ -23,4 +23,14 @@ export class UserRequestService extends AbstractRequestService {
   patchUserPassword(password: string): Observable<User> {
     return this.request<User>('PATCH', this.url, { "password" : password });
   }
+
+  patchUserEmail(email: string): Observable<User> {
+    return this.request<User>('PATCH', this.url, { "email" : email });
+  }
+
+  getEmailAvailability(email: string): Observable<{ available: boolean }> {
+    return this.request<{ available: boolean }>('GET', this.url + '/search/email?value=' + encodeURIComponent(email));
+  }
+
+
 }

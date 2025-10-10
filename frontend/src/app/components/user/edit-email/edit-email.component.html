@@ -1,0 +1,129 @@
+<div class="min-h-[60vh] flex items-center justify-center bg-[#25282D] text-[#F3F6F7]">
+  <div class="w-full max-w-md bg-[#30353B] p-8 rounded-2xl shadow-lg border border-[#3A3F46]">
+    <h2 class="text-2xl font-semibold text-center mb-6 text-[#E2A411]">
+      Changer d’adresse e-mail
+    </h2>
+
+    <!-- Formulaire de changement d'email -->
+    <form (ngSubmit)="openConfirmModal()" #emailForm="ngForm" class="space-y-5">
+      <div>
+        <label for="email" class="block text-sm font-medium mb-1 text-[#BDC1C7]">
+          Nouvelle adresse e-mail
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="newEmail"
+          (ngModelChange)="checkEmailAvailability()"
+          required
+          placeholder="nouvel.email@exemple.com"
+          class="w-full px-4 py-2 rounded-lg bg-[#25282D] border border-[#3A3F46]
+                 text-[#F3F6F7] placeholder-[#888C96] focus:outline-none
+                 focus:ring-2 focus:ring-[#E2A411] focus:border-transparent transition"
+        />
+
+        <!-- Message de validation dynamique -->
+        <div *ngIf="newEmail" class="mt-2 text-sm">
+          <span *ngIf="checking" class="text-[#BDC1C7] italic">Vérification en cours...</span>
+          <span *ngIf="!checking && emailTaken" class="text-red-500 font-medium">
+            Cette adresse e-mail est déjà utilisée.
+          </span>
+          <span *ngIf="!checking && !emailTaken" class="text-green-500 font-medium">
+            Cette adresse e-mail est disponible.
+          </span>
+        </div>
+      </div>
+
+      <!-- Bouton -->
+      <button
+        type="submit"
+        [disabled]="emailForm.invalid || emailTaken || checking"
+        class="w-full py-2.5 rounded-lg font-bold text-[#1B1C1C] bg-[#E2A411]
+               hover:bg-[#f1b624] transition disabled:bg-[#555]
+               disabled:text-[#BDC1C7] disabled:cursor-not-allowed"
+      >
+        Modifier l’adresse e-mail
+      </button>
+    </form>
+  </div>
+
+  <!-- Modale de confirmation -->
+  <div
+    *ngIf="showConfirmModal"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+  >
+    <div class="bg-[#30353B] p-6 rounded-2xl shadow-xl border border-[#3A3F46] w-full max-w-sm">
+      <h3 class="text-lg font-semibold mb-4 text-[#E2A411] text-center">
+        Confirmer le changement
+      </h3>
+
+      <p class="text-[#BDC1C7] text-sm mb-4 text-center">
+        Pour valider la modification de ton adresse e-mail, entre ton mot de passe :
+      </p>
+
+      <input
+        type="password"
+        [(ngModel)]="confirmPassword"
+        placeholder="••••••••"
+        class="w-full px-4 py-2 rounded-lg bg-[#25282D] border border-[#3A3F46]
+               text-[#F3F6F7] placeholder-[#888C96] focus:outline-none
+               focus:ring-2 focus:ring-[#E2A411] focus:border-transparent transition mb-4"
+      />
+
+      <div class="flex justify-between">
+        <button
+          (click)="closeConfirmModal()"
+          class="px-4 py-2 rounded-lg font-semibold text-[#BDC1C7] bg-[#3A3F46]
+                 hover:bg-[#444] transition"
+        >
+          Annuler
+        </button>
+        <button
+          (click)="confirmEmailChange()"
+          [disabled]="!confirmPassword"
+          class="px-4 py-2 rounded-lg font-bold text-[#1B1C1C] bg-[#E2A411]
+                 hover:bg-[#f1b624] transition disabled:bg-[#555]
+                 disabled:text-[#BDC1C7] disabled:cursor-not-allowed"
+        >
+          Confirmer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modale de succès -->
+<div
+  *ngIf="showSuccessModal"
+  class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
+>
+  <div class="bg-[#30353B] p-8 rounded-2xl shadow-2xl border border-[#3A3F46] w-full max-w-sm text-center animate-fadeIn">
+    
+    <!-- Icône check -->
+    <div class="flex justify-center mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-14 h-14 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+
+    <h3 class="text-xl font-bold text-[#E2A411] mb-2">
+      Changement réussi !
+    </h3>
+
+    <p class="text-[#BDC1C7] text-sm mb-6">
+      Ton adresse e-mail a été mise à jour avec succès.<br>
+      Tu peux désormais te reconnecter avec ton nouveau compte.
+    </p>
+
+    <button
+      (click)="closeSuccessModal()"
+      class="w-full py-2.5 rounded-lg font-bold text-[#1B1C1C] bg-[#E2A411]
+             hover:bg-[#f1b624] transition duration-200"
+    >
+      Fermer
+    </button>
+  </div>
+</div>
+
+</div>

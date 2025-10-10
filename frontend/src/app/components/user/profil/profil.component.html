@@ -56,6 +56,18 @@
         </button>
     </div>
 
+    <!-- Bouton changer d'adresse e-mail -->
+    <div *ngIf="!loading && user" class="mt-4 text-center">
+    <button
+        (click)="changeEmail()"
+        class="bg-[#30353B] border border-[#E2A411] text-[#E2A411] font-semibold
+            px-6 py-2 rounded-lg hover:bg-[#E2A411] hover:text-[#1B1C1C]
+            transition duration-200 shadow-md"
+    >
+        Changer d’adresse e-mail
+    </button>
+    </div>
+
     <!-- Bouton déconnexion -->
     <div *ngIf="!loading && user" class="mt-8 text-center">
       <button

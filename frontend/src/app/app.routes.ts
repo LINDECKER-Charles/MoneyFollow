@@ -6,6 +6,7 @@ import { NoAuthGuard } from './guards/no-auth.guard';
 import { AboutComponent } from './components/misc/about/about.component';
 import { ProfilComponent } from './components/user/profil/profil.component';
 import { EditPasswordComponent } from './components/user/edit-password/edit-password.component';
+import { EditEmailComponent } from './components/user/edit-email/edit-email.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'profil', component: ProfilComponent },
   { path: 'profil/password-change', component: EditPasswordComponent },
+  { path: 'profil/email-change', component: EditEmailComponent },
   { path: 'about', component: AboutComponent }
 ];
