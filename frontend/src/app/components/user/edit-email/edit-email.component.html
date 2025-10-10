@@ -70,7 +70,11 @@
                text-[#F3F6F7] placeholder-[#888C96] focus:outline-none
                focus:ring-2 focus:ring-[#E2A411] focus:border-transparent transition mb-4"
       />
-
+      <div>
+        <div *ngIf="error" class="text-center text-red-500 mb-4 font-medium">
+          {{ error }}
+        </div>
+      </div>
       <div class="flex justify-between">
         <button
           (click)="closeConfirmModal()"

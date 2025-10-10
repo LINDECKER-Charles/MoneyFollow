@@ -45,4 +45,8 @@ export class ProfilComponent implements OnInit {
   changeEmail(): void {
     this.router.navigate(['/profil/email-change']);
   }
+
+  changeName(): void {
+    this.router.navigate(['/profil/name-change']);
+  }
 }
