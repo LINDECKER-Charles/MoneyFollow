@@ -1,10 +1,11 @@
-<div class="app-container">
-  <header class="app-header">
-    <h1>{{ title }}</h1>
-    <p>Suivez vos dépenses facilement</p>
+<div class="app-container flex flex-col min-h-screen bg-[#25282D] text-[#F3F6F7]">
+  <header class="app-header sticky top-0 z-50 bg-[#30353B]/95 backdrop-blur-md border-b border-[#3A3F46] shadow-md">
+    <app-nav-bar></app-nav-bar>
   </header>
-  
-  <main class="app-main">
+
+  <main class="app-main flex-grow justify-center flex flex-col">
     <router-outlet></router-outlet>
   </main>
+
+  <app-footer></app-footer>
 </div>

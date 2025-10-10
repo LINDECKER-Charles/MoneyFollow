@@ -1,0 +1,62 @@
+<nav class="w-full bg-[#30353B] text-[#F3F6F7] shadow-lg">
+  <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+    <!-- Logo / Titre -->
+    <a routerLink="/" class="text-2xl font-bold text-[#E2A411] hover:text-[#f1b624] transition">
+      MoneyFollow
+    </a>
+
+    <!-- Liens de navigation -->
+    <div class="flex space-x-6">
+      <a
+        routerLink="/home"
+        routerLinkActive="text-[#E2A411] border-b-2 border-[#E2A411]"
+        class="hover:text-[#E2A411] transition pb-1"
+      >
+        Accueil
+      </a>
+
+      <a
+        routerLink="/about"
+        routerLinkActive="text-[#E2A411] border-b-2 border-[#E2A411]"
+        class="hover:text-[#E2A411] transition pb-1"
+      >
+        À propos
+      </a>
+
+      <!-- Si utilisateur connecté -->
+      <ng-container *ngIf="isLoggedIn; else guestLinks">
+        <a
+          routerLink="/profil"
+          routerLinkActive="text-[#E2A411] border-b-2 border-[#E2A411]"
+          class="hover:text-[#E2A411] transition pb-1"
+        >
+          Profil
+        </a>
+        <button
+          (click)="logout()"
+          class="bg-[#E2A411] text-[#1B1C1C] font-semibold px-3 py-1 rounded-lg hover:bg-[#f1b624] transition"
+        >
+          Déconnexion
+        </button>
+      </ng-container>
+
+      <!-- Si utilisateur non connecté -->
+      <ng-template #guestLinks>
+        <a
+          routerLink="/login"
+          routerLinkActive="text-[#E2A411] border-b-2 border-[#E2A411]"
+          class="hover:text-[#E2A411] transition pb-1"
+        >
+          Connexion
+        </a>
+        <a
+          routerLink="/register"
+          routerLinkActive="text-[#E2A411] border-b-2 border-[#E2A411]"
+          class="hover:text-[#E2A411] transition pb-1"
+        >
+          Inscription
+        </a>
+      </ng-template>
+    </div>
+  </div>
+</nav>

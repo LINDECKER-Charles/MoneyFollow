@@ -15,14 +15,13 @@ export class AuthService {
       .pipe(
         tap((response: any) => {
           if (response.token) {
-            // On stocke le token dans le localStorage
             localStorage.setItem('token', response.token);
           }
         })
       );
   }
 
-  register(email: string, password: string, username: string): Observable<any> {
+  public register(email: string, password: string, username: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, { email, password, username })
       .pipe(
         tap((response: any) => {
@@ -33,15 +32,34 @@ export class AuthService {
       );
   }
 
-  logout(): void {
+  public logout(): void {
     localStorage.removeItem('token');
   }
 
-  getToken(): string | null {
+  public isTokenExpired(): boolean {
+    const token = this.getToken();
+    if (!token) return true;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const now = Math.floor(Date.now() / 1000);
+
+      return payload.exp < now; // true = expiré
+    } catch (e) {
+      console.error('Erreur de décodage du token :', e);
+      return true; // si erreur → on considère expiré par sécurité
+    }
+  }
+
+  public getToken(): string | null {
     return localStorage.getItem('token');
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
+    if(this.isTokenExpired()){
+      this.logout();
+      return false;
+    }
     return !!this.getToken();
   }
 }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent {
     this.authService.login(this.email, this.password).subscribe({
       next: () => {
         console.log('✅ Authentifié avec succès');
-        this.router.navigate(['/home']); // redirige après connexion réussie
+        this.router.navigate(['/profil']); // redirige après connexion réussie
       },
       error: (err) => {
         console.error('❌ Erreur de connexion :', err);
