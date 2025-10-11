@@ -47,7 +47,7 @@
     <!-- Bouton changer mot de passe -->
     <div *ngIf="!loading && user" class="mt-6 text-center">
         <button
-            (click)="changePassword()"
+            routerLink="/profil/password-change"
             class="bg-[#30353B] border border-[#E2A411] text-[#E2A411] font-semibold
                 px-6 py-2 rounded-lg hover:bg-[#E2A411] hover:text-[#1B1C1C]
                 transition duration-200 shadow-md"
@@ -59,7 +59,7 @@
     <!-- Bouton changer d'adresse e-mail -->
     <div *ngIf="!loading && user" class="mt-4 text-center">
     <button
-        (click)="changeEmail()"
+        routerLink="/profil/email-change"
         class="bg-[#30353B] border border-[#E2A411] text-[#E2A411] font-semibold
             px-6 py-2 rounded-lg hover:bg-[#E2A411] hover:text-[#1B1C1C]
             transition duration-200 shadow-md"
@@ -71,12 +71,24 @@
     <!-- Bouton changer de nom -->
     <div *ngIf="!loading && user" class="mt-4 text-center">
     <button
-        (click)="changeName()"
+        routerLink="/profil/name-change"
         class="bg-[#30353B] border border-[#E2A411] text-[#E2A411] font-semibold
             px-6 py-2 rounded-lg hover:bg-[#E2A411] hover:text-[#1B1C1C]
             transition duration-200 shadow-md"
     >
         Changer de nom
+    </button>
+    </div>
+
+        <!-- Bouton changer de nom -->
+    <div *ngIf="!loading && user" class="mt-4 text-center">
+    <button
+        routerLink="/profil/delete-account"
+        class="bg-[#30353B] border border-[#E2A411] text-[#E2A411] font-semibold
+            px-6 py-2 rounded-lg hover:bg-[#E2A411] hover:text-[#1B1C1C]
+            transition duration-200 shadow-md"
+    >
+        Supprimer le compte
     </button>
     </div>
 

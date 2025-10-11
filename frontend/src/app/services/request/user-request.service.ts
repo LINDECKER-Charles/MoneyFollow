@@ -36,5 +36,9 @@ export class UserRequestService extends AbstractRequestService {
     return this.request<{ available: boolean }>('GET', this.url + '/search/email?value=' + encodeURIComponent(email));
   }
 
+  deleteUser(): Observable<void> {
+    return this.request<void>('DELETE', this.url);
+  }
+
 
 }

@@ -98,11 +98,11 @@ public class UserController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteAuthenticatedUser(@AuthenticationPrincipal User user) {
+    public ResponseEntity<Map<String, Object>> deleteAuthenticatedUser(@AuthenticationPrincipal User user) {
         if (user == null) {
             return ResponseEntity.status(401).build();
         } 
         userRepository.delete(user);
-        return ResponseEntity.ok("Utilisateur supprimé");
+        return ResponseEntity.ok(Map.of("message", "Utilisateur supprimé"));
     }
 }

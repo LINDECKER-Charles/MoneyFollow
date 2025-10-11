@@ -8,6 +8,7 @@ import { ProfilComponent } from './components/user/profil/profil.component';
 import { EditPasswordComponent } from './components/user/edit-password/edit-password.component';
 import { EditEmailComponent } from './components/user/edit-email/edit-email.component';
 import { EditNameComponent } from './components/user/edit-name/edit-name.component';
+import { DeleteAccountComponent } from './components/user/delete-account/delete-account.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: 'profil/password-change', component: EditPasswordComponent },
   { path: 'profil/email-change', component: EditEmailComponent },
   { path: 'profil/name-change', component: EditNameComponent },
+  { path: 'profil/delete-account', component: DeleteAccountComponent },
   { path: 'about', component: AboutComponent }
 ];

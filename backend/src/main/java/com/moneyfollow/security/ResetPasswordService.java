@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.moneyfollow.model.ResetToken;
@@ -24,6 +25,7 @@ public class ResetPasswordService {
     @Value("${app.frontend.url}")
     private String frontendUrl;
 
+    @Async
     public void sendVerificationEmail(User user) {
         String token = UUID.randomUUID().toString();
 

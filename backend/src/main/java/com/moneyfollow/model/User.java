@@ -49,15 +49,23 @@ public class User implements UserDetails {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     // Relations
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference("user-products")
     @JsonIgnore
     private List<Product> products;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference("user-categories")
     @JsonIgnore
     private List<Category> categories;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<VerificationToken> verificationToken;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<ResetToken> resetToken;
 
     @Enumerated(EnumType.STRING)
     private Role role;
