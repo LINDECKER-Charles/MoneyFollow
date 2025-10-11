@@ -8,7 +8,7 @@ import { UserRequestService, User } from 'src/app/services/request/user-request.
 @Component({
   selector: 'app-profil',
   standalone: true,
-  imports: [CommonModule,],
+  imports: [CommonModule],
   templateUrl: './profil.component.html',
   styleUrl: './profil.component.scss'
 })
@@ -23,7 +23,9 @@ export class ProfilComponent implements OnInit {
   ngOnInit(): void {
     this.userRequest.getUser().subscribe({
       next: (response) => {
+        console.log(response);
         this.user = response;
+        console.log(this.user);
         this.loading = false;
       },
       error: (err) => {

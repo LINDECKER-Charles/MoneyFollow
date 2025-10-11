@@ -6,7 +6,7 @@ export interface User {
   name: string,
   email: string,
   createdAt: string,
-  verified: boolean
+  isVerified: boolean
 }
 
 @Injectable({

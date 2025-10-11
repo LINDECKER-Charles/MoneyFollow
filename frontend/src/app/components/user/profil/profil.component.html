@@ -37,9 +37,9 @@
         <span class="text-[#BDC1C7]">Vérifié :</span>
         <span
           class="px-3 py-1 rounded-full text-sm font-semibold"
-          [ngClass]="user.verified ? 'bg-green-600 text-[#F3F6F7]' : 'bg-red-600 text-[#F3F6F7]'"
+          [ngClass]="user.isVerified ? 'bg-green-600 text-[#F3F6F7]' : 'bg-red-600 text-[#F3F6F7]'"
         >
-          {{ user.verified ? 'Oui' : 'Non' }}
+          {{ user.isVerified ? 'Oui' : 'Non' }}
         </span>
       </div>
     </div>
