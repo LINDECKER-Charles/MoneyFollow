@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -96,8 +97,12 @@ public class UserController {
         return ResponseEntity.ok(exists);
     }
 
-    
-
-
-
+    @DeleteMapping
+    public ResponseEntity<String> deleteAuthenticatedUser(@AuthenticationPrincipal User user) {
+        if (user == null) {
+            return ResponseEntity.status(401).build();
+        } 
+        userRepository.delete(user);
+        return ResponseEntity.ok("Utilisateur supprimé");
+    }
 }

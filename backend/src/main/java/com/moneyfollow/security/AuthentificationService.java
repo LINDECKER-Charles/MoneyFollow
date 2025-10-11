@@ -23,6 +23,7 @@ public class AuthentificationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final VerificationService verificationService;
 
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
@@ -32,6 +33,7 @@ public class AuthentificationService {
             .role(Role.USER)
             .build();
         repository.save(user);
+        this.verificationService.sendVerificationEmail(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
             .token(jwtToken)

@@ -11,19 +11,18 @@ import com.moneyfollow.model.VerificationToken;
 import com.moneyfollow.repository.VerificationTokenRepository;
 import com.moneyfollow.service.MailService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class VerificationService {
     
     private final VerificationTokenRepository tokenRepository;
+
     private final MailService emailService;
 
     @Value("${app.frontend.url}")
     private String frontendUrl;
-
-    public VerificationService(VerificationTokenRepository tokenRepository, MailService emailService) {
-        this.tokenRepository = tokenRepository;
-        this.emailService = emailService;
-    }
 
     public void sendVerificationEmail(User user) {
         String token = UUID.randomUUID().toString();
@@ -41,7 +40,7 @@ public class VerificationService {
             "Vérifie ton adresse e-mail MoneyFollow",
             "Bienvenue dans le Rêve du Chasseur.\n\n" +
             "Clique sur ce lien pour vérifier ton adresse :\n" + link + "\n\n" +
-            "Ce lien expire dans 30 minutes."
+            "Ce lien expire dans 15 minutes."
         );
     }
 

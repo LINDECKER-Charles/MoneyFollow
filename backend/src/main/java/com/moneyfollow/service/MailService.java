@@ -18,7 +18,7 @@ public class MailService {
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
-        message.setFrom("noreply@MoneyFollow-mail.com");
+        message.setFrom("noreply@bloodsouls-mail.com");
         mailSender.send(message);
     }
 }
