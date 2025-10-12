@@ -7,6 +7,8 @@ import org.springframework.web.server.ResponseStatusException;
 import com.moneyfollow.dto.UserDTORecord;
 import com.moneyfollow.model.User;
 import com.moneyfollow.repository.UserRepository;
+import com.moneyfollow.repository.VerificationTokenRepository;
+import com.moneyfollow.security.VerificationService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,6 +35,8 @@ public class UserController {
     
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final VerificationService verificationService;
+    private final VerificationTokenRepository emailTokenRepository;
     
     @GetMapping
     public ResponseEntity<UserDTORecord> getUser(@AuthenticationPrincipal User user) {
@@ -48,6 +52,15 @@ public class UserController {
         );
         return ResponseEntity.ok(userDTO);
     }
+
+    @GetMapping("/isVerified")
+    public ResponseEntity<Boolean> getMethodName(@AuthenticationPrincipal User user) {
+        if (user == null) {
+            return ResponseEntity.status(401).build();
+        }
+        return ResponseEntity.ok(user.isVerified());
+    }
+    
 
     @PatchMapping
     public ResponseEntity<UserDTORecord> patchAuthenticatedUser(
@@ -66,6 +79,8 @@ public class UserController {
         if (updates.containsKey("email")) {
             user.setEmail((String) updates.get("email"));
             user.setVerified(false);
+            emailTokenRepository.findByUser(user).ifPresent(emailTokenRepository::delete);
+            this.verificationService.sendVerificationEmail(user);
         }
 
         if (updates.containsKey("password")) {

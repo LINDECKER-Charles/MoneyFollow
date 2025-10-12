@@ -79,6 +79,7 @@ export class EditEmailComponent {
                 this.auth.login(this.newEmail, this.confirmPassword).subscribe({
                   next: () => {
                     this.showSuccessModal = true;
+                    localStorage.removeItem('isVerified');
                   },
                   error: (err) => {
                     console.log(err);

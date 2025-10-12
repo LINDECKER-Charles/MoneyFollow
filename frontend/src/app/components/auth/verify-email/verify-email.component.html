@@ -1,0 +1,50 @@
+<div class="min-h-screen flex items-center justify-center bg-[#25282D] text-[#F3F6F7] px-4">
+  <div class="w-full max-w-lg bg-[#30353B] p-8 rounded-2xl shadow-lg border border-[#3A3F46] text-center">
+
+    <!-- Titre principal -->
+    <h2 class="text-3xl font-bold mb-6 text-[#E2A411]">
+      Vérification de ton e-mail
+    </h2>
+
+    <!-- Chargement -->
+    <div *ngIf="loading" class="text-[#BDC1C7] animate-pulse">
+      Vérification en cours...
+    </div>
+
+    <!-- Succès -->
+    <div *ngIf="!loading && successMessage" class="space-y-4">
+      <div class="text-green-500 text-lg font-semibold">
+        {{ successMessage }}
+      </div>
+      <p class="text-[#BDC1C7]">
+        Ton adresse e-mail a été vérifiée avec succès. Tu peux maintenant accéder à ton compte.
+      </p>
+      <button
+        routerLink="/login"
+        class="mt-6 px-6 py-2 rounded-lg font-semibold bg-[#E2A411] text-[#1B1C1C]
+               hover:bg-[#f1b624] transition duration-200"
+      >
+        Retour à la connexion
+      </button>
+    </div>
+
+    <!-- Erreur -->
+    <div *ngIf="!loading && errorMessage" class="space-y-4">
+      <div class="text-red-500 text-lg font-semibold">
+        ❌ {{ errorMessage }}
+      </div>
+      <p class="text-[#BDC1C7]">
+        Le lien de vérification est invalide ou a expiré.
+      </p>
+      <button
+        routerLink="/check-email"
+        class="mt-6 px-6 py-2 rounded-lg font-semibold border border-[#E2A411]
+               text-[#E2A411] hover:bg-[#E2A411] hover:text-[#1B1C1C]
+               transition duration-200"
+      >
+        Renvoyer un nouveau lien
+      </button>
+    </div>
+
+  </div>
+</div>

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export abstract class AbstractRequestService {
 
-  protected baseUrl = 'http://localhost:8000/api';  
+  protected baseUrl = 'http://localhost:8000';  
   constructor(protected http : HttpClient, protected auth : AuthService, protected router : Router) { }
 
   protected request<T>(method: string, url: string, body?: any): Observable<T> {

@@ -14,29 +14,33 @@ export interface User {
 })
 export class UserRequestService extends AbstractRequestService {
   
-    private url = this.baseUrl + '/user';
+  private url = this.baseUrl + '/api/user';
 
-  getUser(): Observable<User> {
+  public getUser(): Observable<User> {
     return this.request<User>('GET', this.url);
   }
 
-  patchUserPassword(password: string): Observable<User> {
+  public isVerified(): Observable<boolean> {
+    return this.request<boolean>('GET', this.url + '/isVerified');
+  }
+
+  public patchUserPassword(password: string): Observable<User> {
     return this.request<User>('PATCH', this.url, { "password" : password });
   }
 
-  patchUserEmail(email: string): Observable<User> {
+  public patchUserEmail(email: string): Observable<User> {
     return this.request<User>('PATCH', this.url, { "email" : email });
   }
 
-  patchUserName(name: string): Observable<User> {
+  public patchUserName(name: string): Observable<User> {
     return this.request<User>('PATCH', this.url, { "name" : name });
   }
 
-  getEmailAvailability(email: string): Observable<{ available: boolean }> {
+  public getEmailAvailability(email: string): Observable<{ available: boolean }> {
     return this.request<{ available: boolean }>('GET', this.url + '/search/email?value=' + encodeURIComponent(email));
   }
 
-  deleteUser(): Observable<void> {
+  public deleteUser(): Observable<void> {
     return this.request<void>('DELETE', this.url);
   }
 

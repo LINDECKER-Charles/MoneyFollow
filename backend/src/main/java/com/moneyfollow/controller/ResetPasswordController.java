@@ -48,10 +48,10 @@ public class ResetPasswordController {
     }
 
     @GetMapping("/send-reset-password")
-    public ResponseEntity<String> sendVerifyMail(@AuthenticationPrincipal User user) {
-        if (user == null) {
-            return ResponseEntity.status(401).build();
-        }
+    public ResponseEntity<String> sendVerifyMail(@RequestParam String email) {
+
+        User user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
         tokenRepository.findByUser(user).ifPresent(tokenRepository::delete);
         this.resetPasswordService.sendVerificationEmail(user);
         return ResponseEntity.ok("Reset password mail sent.");

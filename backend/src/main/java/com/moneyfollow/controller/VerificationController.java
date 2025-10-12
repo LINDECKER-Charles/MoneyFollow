@@ -1,5 +1,7 @@
 package com.moneyfollow.controller;
 
+import java.util.Map;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,13 +26,13 @@ public class VerificationController {
     private final UserRepository userRepository;
 
     @GetMapping("/verify")
-    public ResponseEntity<String> verifyUser(@RequestParam String token) {
+    public ResponseEntity<Map<String, Object>> verifyUser(@RequestParam String token) {
         var verificationToken = tokenRepository.findByToken(token)
             .orElseThrow(() -> new RuntimeException("Token invalide"));
 
         if (verificationToken.isExpired()) {
             tokenRepository.delete(verificationToken);
-            return ResponseEntity.badRequest().body("⏳ Le lien de vérification a expiré.");
+            return ResponseEntity.badRequest().body(Map.of("message", "⏳ Le lien de vérification a expiré."));
         }
 
         User user = verificationToken.getUser();
@@ -39,20 +41,20 @@ public class VerificationController {
 
         tokenRepository.delete(verificationToken);
 
-        return ResponseEntity.ok("✅ Adresse e-mail vérifiée avec succès !");
+        return ResponseEntity.ok(Map.of("message", "Adresse e-mail vérifiée avec succès !"));
     }
 
     @GetMapping("/send-verify")
-    public ResponseEntity<String> sendVerifyMail(@AuthenticationPrincipal User user) {
+    public ResponseEntity<Map<String, Object>> sendVerifyMail(@AuthenticationPrincipal User user) {
         if (user == null) {
             return ResponseEntity.status(401).build();
         }
         if (user.isVerified()) {
-            return ResponseEntity.badRequest().body("Ton adresse e-mail est déjà vérifiée.");
+            return ResponseEntity.badRequest().body(Map.of("message", "Ton adresse e-mail est déjà vérifiée."));
         }
         tokenRepository.findByUser(user).ifPresent(tokenRepository::delete);
         this.verificationService.sendVerificationEmail(user);
-        return ResponseEntity.ok("Mail de vérification envoyé.");
+        return ResponseEntity.ok(Map.of("message", "Mail de vérification envoyé."));
     }
     
 }

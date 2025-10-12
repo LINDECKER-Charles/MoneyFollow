@@ -43,7 +43,7 @@ export class DeleteAccountComponent {
             this.userRequest.deleteUser().subscribe({
               next: () => {
                 this.auth.logout();
-                this.router.navigate(['/login']);
+                this.router.navigate(['/register']);
               },
               error: (err) => {
                 console.log(err);

@@ -41,7 +41,7 @@ export class RegisterComponent {
     this.authService.register(this.email, this.password, this.username).subscribe({
       next: () => {
         console.log('✅ Inscription réussie');
-        this.router.navigate(['/profil']);
+        this.router.navigate(['/check-email']);
       },
       error: (err) => {
         console.error('❌ Erreur lors de l\'inscription :', err);

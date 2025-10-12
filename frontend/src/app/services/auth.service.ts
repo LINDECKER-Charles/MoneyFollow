@@ -16,6 +16,7 @@ export class AuthService {
         tap((response: any) => {
           if (response.token) {
             localStorage.setItem('token', response.token);
+            localStorage.setItem('email', email);
           }
         })
       );
@@ -27,6 +28,7 @@ export class AuthService {
         tap((response: any) => {
           if (response.token) {
             localStorage.setItem('token', response.token);
+            localStorage.setItem('email', email);
           }
         })
       );
