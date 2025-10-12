@@ -13,6 +13,8 @@ import { ConfirmEmailComponent } from './components/auth/confirm-email/confirm-e
 import { VerifyEmailComponent } from './components/auth/verify-email/verify-email.component';
 import { authGuard } from './guards/auth.guard';
 import { noVerifiedGuard } from './guards/no-verified.guard';
+import { ForgotPasswordComponent } from './components/auth/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,6 +22,9 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [NoAuthGuard] },
   { path: 'check-email', component: ConfirmEmailComponent, canActivate: [noVerifiedGuard] },
+  { path: 'send-reset-password', component: ForgotPasswordComponent, canActivate: [NoAuthGuard] },
+  { path: 'reset', component: ResetPasswordComponent, canActivate: [NoAuthGuard] },
+
   { path: 'verify', component: VerifyEmailComponent },
 
   { path: 'home', component: HomeComponent, canActivate: [authGuard] },

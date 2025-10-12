@@ -12,8 +12,8 @@ export abstract class AbstractRequestService {
   protected baseUrl = 'http://localhost:8000';  
   constructor(protected http : HttpClient, protected auth : AuthService, protected router : Router) { }
 
-  protected request<T>(method: string, url: string, body?: any): Observable<T> {
-    if(this.auth.isTokenExpired()){
+  protected request<T>(method: string, url: string, body?: any, log: boolean = true): Observable<T> {
+    if(this.auth.isTokenExpired() && log){
       this.auth.logout();
       this.router.navigate(['/login']);
     }
