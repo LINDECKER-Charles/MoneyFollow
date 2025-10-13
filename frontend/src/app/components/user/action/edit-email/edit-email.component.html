@@ -66,6 +66,7 @@
           Annuler
         </button>
         <button
+          (keydown.enter)="confirmEmailChange()"
           (click)="confirmEmailChange()"
           [disabled]="!confirmPassword"
           class="btn-primary p-2"
@@ -91,7 +92,7 @@
         Tu peux désormais te reconnecter avec ton nouveau compte.
       </p>
 
-      <button (click)="closeSuccessModal()" class="btn-primary w-full py-2.5">
+      <button (keydown.enter)="closeSuccessModal()" (click)="closeSuccessModal()" class="btn-primary w-full py-2.5">
         Fermer
       </button>
     </div>
