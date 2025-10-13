@@ -1,0 +1,14 @@
+@layer components {
+  .alert-warning {
+    @apply bg-neutral-700 border-l-4 border-primary-400 p-4 rounded-md text-neutral-300 text-sm leading-relaxed;
+  }
+
+  .alert-error {
+    @apply bg-red-900/40 border border-red-700 text-red-400 text-sm px-3 py-2 rounded-md;
+  }
+
+  .highlight {
+    @apply text-primary-400 font-semibold;
+  }
+}
+

@@ -1,0 +1,14 @@
+@layer components {
+  .card {
+    @apply bg-neutral-800 p-8 rounded-2xl shadow-soft;
+  }
+
+  .card-title {
+    @apply text-2xl font-display text-center text-primary-400 mb-6;
+  }
+
+  .error-text {
+    @apply text-danger text-center text-sm font-semibold;
+  }
+}
+

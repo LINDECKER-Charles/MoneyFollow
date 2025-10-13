@@ -1,0 +1,14 @@
+@layer utilities {
+  .page {
+    @apply min-h-screen flex items-center justify-center bg-background-dark text-neutral-100;
+  }
+
+  .link {
+    @apply text-primary-400 hover:text-primary-300 font-medium transition cursor-pointer;
+  }
+
+  .text-muted {
+    @apply text-neutral-400;
+  }
+}
+

@@ -1,0 +1,50 @@
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center font-semibold rounded-lg transition duration-200 select-none;
+  }
+
+  .btn-logout {
+    @apply bg-gradient-to-tr from-primary-500 to-secondary-500 text-white font-semibold px-3 py-1.5 rounded-lg hover:from-primary-400 hover:to-secondary-400 transition;
+  }
+
+  .btn-outline.danger {
+    @apply border-red-500 text-red-500 hover:bg-red-500 hover:text-neutral-900;
+  }
+
+  .btn-outline {
+    @apply rounded-lg border border-primary-400 text-primary-400 hover:bg-primary-400 hover:text-neutral-900 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-gradient-to-tr from-primary-500 to-secondary-500 text-white hover:from-primary-400 hover:to-secondary-400 disabled:from-neutral-600 disabled:to-neutral-700 disabled:cursor-not-allowed hover:cursor-pointer;
+  }
+
+  .btn-back {
+    @apply inline-flex items-center justify-center text-sm font-medium text-neutral-400 px-4 py-2 rounded-md border border-transparent transition-all duration-200;
+  }
+
+  .btn-back:hover {
+    @apply text-primary-400 border-primary-400 bg-neutral-800/50;
+  }
+
+  .btn-back svg {
+    @apply text-primary-400 transition-transform duration-200;
+  }
+
+  .btn-link {
+    @apply inline-flex items-center justify-center text-neutral-400 hover:text-primary-400 transition;
+  }
+
+  .btn-back:hover svg {
+    @apply -translate-x-1;
+  }
+
+  .btn-text {
+    @apply inline-flex items-center justify-center text-sm text-neutral-400 hover:text-primary-400 transition;
+  }
+
+  .btn-danger {
+    @apply px-4 py-2 rounded-lg font-bold text-neutral-100 bg-red-600 hover:bg-red-700 transition duration-200 disabled:bg-neutral-700 disabled:text-neutral-500 disabled:cursor-not-allowed;
+  }
+}
+

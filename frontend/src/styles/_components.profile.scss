@@ -1,0 +1,22 @@
+@layer components {
+  .profile-info {
+    @apply space-y-4 mb-8;
+  }
+
+  .profile-row {
+    @apply flex justify-between border-b border-neutral-700 pb-2 text-sm md:text-base;
+  }
+
+  .profile-row dt {
+    @apply text-neutral-400;
+  }
+
+  .profile-row dd {
+    @apply font-medium text-neutral-100;
+  }
+
+  .profile-actions {
+    @apply flex flex-col space-y-3 mt-6 text-center;
+  }
+}
+

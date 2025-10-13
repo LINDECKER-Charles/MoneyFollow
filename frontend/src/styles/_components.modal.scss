@@ -1,0 +1,35 @@
+@layer components {
+  .modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50;
+  }
+
+  .modal {
+    @apply bg-neutral-800 p-8 rounded-2xl shadow-2xl border border-neutral-700 w-full max-w-sm text-center animate-fadeIn;
+  }
+
+  .modal-title {
+    @apply text-xl font-bold text-primary-400 mb-4;
+  }
+
+  .modal-text {
+    @apply text-neutral-300 text-sm mb-4;
+  }
+}
+
+@layer utilities {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+}
+

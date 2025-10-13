@@ -1,0 +1,34 @@
+@layer components {
+  .input {
+    @apply w-full px-4 py-2 rounded-lg bg-neutral-800 border border-neutral-700 text-neutral-100 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent transition;
+  }
+
+  .label {
+    @apply text-sm font-medium text-neutral-300 mb-1;
+  }
+
+  .form-group {
+    @apply flex flex-col space-y-1;
+  }
+
+  .input-group {
+    @apply relative;
+  }
+
+  .input-icon {
+    @apply absolute top-1/2 right-3 flex items-center text-neutral-400 hover:text-primary-400 transition;
+  }
+
+  .input-icon svg {
+    @apply w-5 h-5;
+  }
+
+  .field-error {
+    @apply text-red-500 text-sm mt-1;
+  }
+
+  .page-form {
+    @apply min-h-screen flex items-center justify-center bg-background-dark text-neutral-100;
+  }
+}
+
