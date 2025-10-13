@@ -1,138 +1,192 @@
-<div class="min-h-screen flex items-center justify-center bg-[#25282D] text-[#F3F6F7]">
-  <div class="w-full max-w-md bg-[#30353B] p-8 rounded-2xl shadow-lg">
-    <h2 class="text-2xl font-semibold text-center mb-6 text-[#E2A411]">
-      Créer un compte
-    </h2>
+<main id="main-content" class="page-form">
+  <section class="card w-full max-w-md" aria-labelledby="register-title">
+    <h1 id="register-title" class="card-title">Créer un compte</h1>
 
-    <form (ngSubmit)="onSubmit()" #registerForm="ngForm" class="space-y-4">
+    <form
+      name="registerForm"
+      aria-labelledby="register-title"
+      (ngSubmit)="onSubmit()"
+      #registerForm="ngForm"
+      class="space-y-4"
+    >
       <!-- Nom d'utilisateur -->
-      <div>
-        <label for="username" class="block text-sm font-medium mb-1 text-[#BDC1C7]">
-          Nom d'utilisateur
-        </label>
+      <label class="label block">
+        Nom d’utilisateur
         <input
           type="text"
-          id="username"
           name="username"
           [(ngModel)]="username"
           required
           placeholder="ex: Pseudo123"
-          class="w-full px-4 py-2 rounded-lg bg-[#25282D] border border-[#3A3F46] text-[#F3F6F7] placeholder-[#888C96] focus:outline-none focus:ring-2 focus:ring-[#E2A411] focus:border-transparent transition"
+          class="input mt-1"
         />
-      </div>
+      </label>
 
-      <!-- Email -->
-      <div>
-        <label for="email" class="block text-sm font-medium mb-1 text-[#BDC1C7]">
-          Adresse e-mail
-        </label>
+      <!-- Adresse e-mail -->
+      <label class="label block">
+        Adresse e-mail
         <input
           type="email"
-          id="email"
           name="email"
           [(ngModel)]="email"
           required
           placeholder="ex: your.mail@mail.com"
-          class="w-full px-4 py-2 rounded-lg bg-[#25282D] border border-[#3A3F46] text-[#F3F6F7] placeholder-[#888C96] focus:outline-none focus:ring-2 focus:ring-[#E2A411] focus:border-transparent transition"
+          class="input mt-1"
         />
-      </div>
+      </label>
 
       <!-- Mot de passe -->
-<div class="relative">
-  <label for="password" class="block text-sm font-medium mb-1 text-[#BDC1C7]">
-    Mot de passe
-  </label>
-
-  <input
-    [type]="showPassword ? 'text' : 'password'"
-    id="password"
-    name="password"
-    [(ngModel)]="password"
-    required
-    placeholder="••••••••"
-    class="w-full px-4 py-2 pr-10 rounded-lg bg-[#25282D] border border-[#3A3F46] text-[#F3F6F7]
-           placeholder-[#888C96] focus:outline-none focus:ring-2 focus:ring-[#E2A411]
-           focus:border-transparent transition"
-  />
-
-  <!-- Icône œil -->
-  <button
-    type="button"
-    (click)="togglePasswordVisibility()"
-    class="absolute top-1/2 -translate-y-2/5 right-3 flex items-center text-[#888C96] hover:text-[#E2A411] transition "
-    tabindex="-1"
-  >
-    <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7
-           -1.274 4.057-5.065 7-9.542 7 -4.477 0-8.268-2.943-9.542-7z" />
-    </svg>
-
-    <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7
-           a10.05 10.05 0 011.563-3.029m4.47-2.695A9.973 9.973 0 0112 5
-           c4.477 0 8.268 2.943 9.542 7a9.956 9.956 0 01-4.48 5.106M15 12a3 3 0
-           11-6 0 3 3 0 016 0z" />
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-        d="M3 3l18 18" />
-    </svg>
-  </button>
-</div>
-
-
-      <!-- Confirme Mot de passe -->
-      <div class="relative">
-        <label for="passwordConfirm" class="block text-sm font-medium mb-1 text-[#BDC1C7]">
-          Confirmer Mot de passe
+      <div class="input-group">
+        <label class="label block">
+          Mot de passe
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            name="password"
+            [(ngModel)]="password"
+            required
+            placeholder="••••••••"
+            class="input mt-1 pr-10"
+          />
         </label>
 
-        <input
-          [type]="showConfirm ? 'text' : 'password'"
-          id="passwordConfirm"
-          name="passwordConfirm"
-          placeholder="••••••••"
-          [(ngModel)]="passwordConfirm"
-          required
-          class="w-full px-4 py-2 pr-10 rounded-lg bg-[#25282D] border border-[#3A3F46] text-[#F3F6F7]
-                placeholder-[#888C96] focus:outline-none focus:ring-2 focus:ring-[#E2A411]
-                focus:border-transparent transition"
-        />
-
+        <!-- Icône œil -->
         <button
           type="button"
-          (click)="toggleConfirmVisibility()"
-          class="absolute top-1/2 -translate-y-2/5 right-3 flex items-center text-[#888C96] hover:text-[#E2A411] transition"
+          (click)="togglePasswordVisibility()"
+          class="input-icon"
           tabindex="-1"
+          aria-label="Afficher ou masquer le mot de passe"
         >
-          <svg *ngIf="!showConfirm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7
-                -1.274 4.057-5.065 7-9.542 7 -4.477 0-8.268-2.943-9.542-7z" />
+          <svg
+            *ngIf="!showPassword"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5
+                 c4.477 0 8.268 2.943 9.542 7
+                 -1.274 4.057-5.065 7-9.542 7
+                 -4.477 0-8.268-2.943-9.542-7z"
+            />
           </svg>
 
-          <svg *ngIf="showConfirm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7
-                a10.05 10.05 0 011.563-3.029m4.47-2.695A9.973 9.973 0 0112 5
-                c4.477 0 8.268 2.943 9.542 7a9.956 9.956 0 01-4.48 5.106M15 12a3 3 0
-                11-6 0 3 3 0 016 0z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M3 3l18 18" />
+          <svg
+            *ngIf="showPassword"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13.875 18.825A10.05 10.05 0 0112 19
+                 c-4.477 0-8.268-2.943-9.542-7
+                 a10.05 10.05 0 011.563-3.029
+                 m4.47-2.695A9.973 9.973 0 0112 5
+                 c4.477 0 8.268 2.943 9.542 7
+                 a9.956 9.956 0 01-4.48 5.106M15 12a3 3 0
+                 11-6 0 3 3 0 016 0z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 3l18 18"
+            />
           </svg>
         </button>
       </div>
 
-      <!-- Message d'erreur -->
-      <p *ngIf="errorMessage" class="text-[#ff6666] text-center text-sm font-semibold">
-        {{ errorMessage }}
-      </p>
+      <!-- Confirmation du mot de passe -->
+      <div class="input-group">
+        <label class="label block">
+          Confirmer le mot de passe
+          <input
+            [type]="showConfirm ? 'text' : 'password'"
+            name="passwordConfirm"
+            [(ngModel)]="passwordConfirm"
+            required
+            placeholder="••••••••"
+            class="input mt-1 pr-10"
+          />
+        </label>
 
-      <p *ngIf="passwordMismatch" class="text-red-500 text-sm mt-2">
+        <button
+          type="button"
+          (click)="toggleConfirmVisibility()"
+          class="input-icon"
+          tabindex="-1"
+          aria-label="Afficher ou masquer le mot de passe"
+        >
+          <svg
+            *ngIf="!showConfirm"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M2.458 12C3.732 7.943 7.523 5 12 5
+                 c4.477 0 8.268 2.943 9.542 7
+                 -1.274 4.057-5.065 7-9.542 7
+                 -4.477 0-8.268-2.943-9.542-7z"
+            />
+          </svg>
+
+          <svg
+            *ngIf="showConfirm"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13.875 18.825A10.05 10.05 0 0112 19
+                 c-4.477 0-8.268-2.943-9.542-7
+                 a10.05 10.05 0 011.563-3.029
+                 m4.47-2.695A9.973 9.973 0 0112 5
+                 c4.477 0 8.268 2.943 9.542 7
+                 a9.956 9.956 0 01-4.48 5.106M15 12a3 3 0
+                 11-6 0 3 3 0 016 0z"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 3l18 18"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Messages d’erreur -->
+      <p *ngIf="errorMessage" class="error-text">{{ errorMessage }}</p>
+      <p *ngIf="passwordMismatch" class="field-error">
         Les mots de passe ne correspondent pas.
       </p>
 
@@ -140,21 +194,18 @@
       <button
         type="submit"
         [disabled]="registerForm.invalid"
-        class="w-full py-2.5 rounded-lg font-bold text-[#1B1C1C] bg-[#E2A411] hover:bg-[#f1b624] transition disabled:bg-[#555] disabled:text-[#BDC1C7] disabled:cursor-not-allowed"
+        class="btn-primary w-full py-2.5 font-bold"
       >
         Créer un compte
       </button>
     </form>
 
-    <!-- Lien vers la connexion -->
-    <div class="mt-6 text-center text-sm text-[#BDC1C7]">
-      <span>Déjà un compte ?</span>
-      <a
-        routerLink="/login"
-        class="text-[#E2A411] hover:text-[#f1b624] font-medium transition"
-      >
-        Connectez-vous
-      </a>
-    </div>
-  </div>
-</div>
+    <!-- Liens secondaires -->
+    <nav aria-label="Liens d’authentification" class="mt-6 text-center text-sm text-muted">
+      <p>
+        Déjà un compte ?
+        <a routerLink="/login" class="link">Connectez-vous</a>
+      </p>
+    </nav>
+  </section>
+</main>

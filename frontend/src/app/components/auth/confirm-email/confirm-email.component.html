@@ -1,45 +1,53 @@
-<div class="min-h-screen flex items-center justify-center bg-[#25282D] text-[#F3F6F7] px-4">
-  <div class="w-full max-w-lg bg-[#30353B] p-8 rounded-2xl shadow-lg border border-[#3A3F46] text-center">
-    <!-- Titre -->
-    <h2 class="text-3xl font-bold mb-6 text-[#E2A411]">
+<main id="main-content" class="page bg-background-dark text-neutral-100 px-4">
+  <section aria-labelledby="verify-title" class="card w-full max-w-lg text-center border border-neutral-700">
+    <h1 id="verify-title" class="text-3xl font-bold mb-6 text-primary-400">
       Vérifie ton adresse e-mail
-    </h2>
+    </h1>
 
-    <!-- Message principal -->
-    <p class="text-[#BDC1C7] leading-relaxed mb-6">
-      Un e-mail de confirmation a été envoyé à ton adresse.
-      <br />
-      Clique sur le lien dans ce message pour valider ton compte.
-    </p>
+    <article class="text-neutral-300 leading-relaxed mb-6 space-y-4">
+      <p>
+        Un e-mail de confirmation a été envoyé à ton adresse.  
+        Clique sur le lien dans ce message pour valider ton compte.
+      </p>
 
-    <!-- Message secondaire -->
-    <p class="text-sm text-[#888C96] mb-8">
-      ⚠️ Pense à vérifier ton dossier <span class="font-semibold text-[#E2A411]">Spam</span> ou
-      <span class="font-semibold text-[#E2A411]">Courrier indésirable</span> si tu ne vois pas l’e-mail.
-    </p>
+      <p class="text-sm text-neutral-400">
+        Pense à vérifier ton dossier
+        <span class="font-semibold text-primary-400">Spam</span> ou
+        <span class="font-semibold text-primary-400">Courrier indésirable</span>
+        si tu ne vois pas l’e-mail.
+      </p>
+    </article>
 
-    <!-- Bouton resend -->
-    <div>
+    <!-- Boutons -->
+    <div class="space-y-3">
       <button
+        type="button"
         (click)="resendEmail()"
         [disabled]="cooldown > 0"
-        class="px-6 py-2 rounded-lg font-semibold border border-[#E2A411] text-[#E2A411]
-               hover:bg-[#E2A411] hover:text-[#1B1C1C] transition duration-200
-               disabled:opacity-50 disabled:cursor-not-allowed"
+        class="btn-outline w-full sm:w-auto px-6 py-2 font-semibold"
       >
         <span *ngIf="cooldown === 0">Renvoyer le mail</span>
         <span *ngIf="cooldown > 0">Renvoyer dans {{ cooldown }}s</span>
       </button>
+
+      <nav aria-label="Navigation secondaire" class="mt-6">
+        <a routerLink="/profil" class="btn-back">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke-width="2" stroke="currentColor" class="w-4 h-4 mr-2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          Retour au profil
+        </a>
+      </nav>
     </div>
 
-    <!-- Message succès -->
-    <div *ngIf="successMessage" class="mt-6 text-green-500 font-medium">
+    <!-- Messages dynamiques -->
+    <div *ngIf="successMessage" role="alert" class="mt-6 text-green-500 font-medium">
       {{ successMessage }}
     </div>
 
-    <!-- Message erreur -->
-    <div *ngIf="errorMessage" class="mt-6 text-red-500 font-medium">
+    <div *ngIf="errorMessage" role="alert" class="mt-6 text-red-500 font-medium">
       {{ errorMessage }}
     </div>
-  </div>
-</div>
+  </section>
+</main>

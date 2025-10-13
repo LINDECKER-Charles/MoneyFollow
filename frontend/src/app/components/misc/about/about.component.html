@@ -1,39 +1,49 @@
-<section class="w-full bg-[#25282D] text-[#F3F6F7] py-16 px-6 flex justify-center h-full">
-  <div class="max-w-4xl bg-[#30353B] rounded-2xl shadow-lg border border-[#3A3F46] p-10 text-center">
-    <h2 class="text-3xl font-bold text-[#E2A411] mb-6">À propos de MoneyFollow</h2>
+<main id="main-content" class="page bg-background-dark text-neutral-100 py-16 px-6 flex justify-center">
+  <section aria-labelledby="about-title" class="card max-w-4xl text-center border border-neutral-700">
+    <h1 id="about-title" class="text-3xl font-bold text-primary-400 mb-6">
+      À propos de MoneyFollow
+    </h1>
 
-    <p class="text-[#BDC1C7] text-lg leading-relaxed mb-6">
-      <span class="text-[#E2A411] font-semibold">MoneyFollow</span> est une application web moderne dédiée à la gestion
-      financière personnelle. Son objectif : permettre à chacun de mieux comprendre ses dépenses et revenus à travers une
-      interface claire, rapide et intuitive.
-    </p>
-
-    <p class="text-[#BDC1C7] text-lg leading-relaxed mb-6">
-      Ce projet est développé avec <span class="text-[#E2A411]">Angular</span> pour le front-end et
-      <span class="text-[#E2A411]">Spring Boot</span> pour le back-end, connectés à une base
-      <span class="text-[#E2A411]">PostgreSQL</span>.  
-      Un stack robuste, sécurisé et pensé pour l’évolution.
-    </p>
-
-    <div class="mt-8 space-y-2 text-[#BDC1C7]">
-      <p><span class="text-[#E2A411] font-semibold">Développeur :</span> Charles Lindecker</p>
+    <article class="space-y-6 text-neutral-300 text-lg leading-relaxed">
       <p>
-        <span class="text-[#E2A411] font-semibold">Email :</span>
-        <a href="mailto:charles.lindecker@outlook.fr" class="hover:text-[#f1b624] transition">
+        <span class="text-primary-400 font-semibold">MoneyFollow</span> est une application web moderne dédiée à la
+        gestion financière personnelle. Son objectif : permettre à chacun de mieux comprendre ses dépenses et revenus à
+        travers une interface claire, rapide et intuitive.
+      </p>
+
+      <p>
+        Ce projet est développé avec <span class="text-primary-400">Angular</span> pour le front-end et
+        <span class="text-primary-400">Spring Boot</span> pour le back-end, connectés à une base
+        <span class="text-primary-400">PostgreSQL</span>.  
+        Un stack robuste, sécurisé et pensé pour l’évolution.
+      </p>
+    </article>
+
+    <address aria-labelledby="contact-title" class="not-italic mt-10 space-y-2 text-neutral-400 text-sm">
+      <h2 id="contact-title" class="text-lg font-semibold text-primary-400 mb-3">
+        Contact
+      </h2>
+
+      <p><span class="font-medium text-neutral-100">Développeur :</span> Charles Lindecker</p>
+
+      <p>
+        <span class="font-medium text-neutral-100">Email :</span>
+        <a href="mailto:charles.lindecker@outlook.fr" class="link">
           charles.lindecker&#64;outlook.fr
         </a>
       </p>
+
       <p>
-        <span class="text-[#E2A411] font-semibold">Portfolio :</span>
+        <span class="font-medium text-neutral-100">Portfolio :</span>
         <a
           href="https://github.com/LINDECKER-Charles"
           target="_blank"
           rel="noopener"
-          class="hover:text-[#f1b624] transition"
+          class="link"
         >
           github.com/LINDECKER-Charles
         </a>
       </p>
-    </div>
-  </div>
-</section>
+    </address>
+  </section>
+</main>

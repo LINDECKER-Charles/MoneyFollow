@@ -1,105 +1,70 @@
-<div class="min-h-screen flex items-center justify-center bg-[#25282D] text-[#F3F6F7]">
-  <div class="w-full max-w-lg bg-[#30353B] p-8 rounded-2xl shadow-lg border border-[#3A3F46]">
-    <h2 class="text-3xl font-bold text-center mb-8 text-[#E2A411]">
-      Profil utilisateur
-    </h2>
+<main class="page">
+  <section aria-labelledby="profile-title" class="card max-w-lg w-full">
+    <!-- Titre -->
+    <h1 id="profile-title" class="section-title text-center">Profil utilisateur</h1>
 
-    <!-- Chargement -->
-    <div *ngIf="loading" class="text-center text-[#BDC1C7]">
+    <!-- État : chargement -->
+    <div *ngIf="loading" class="text-center text-muted animate-pulse">
       Chargement des informations...
     </div>
 
-    <!-- Erreur -->
+    <!-- État : erreur -->
     <div *ngIf="error" class="text-center text-red-500 font-semibold">
       {{ error }}
     </div>
 
-    <!-- Données utilisateur -->
-    <div *ngIf="!loading && user" class="space-y-4">
-      <div class="flex justify-between border-b border-[#3A3F46] pb-2">
-        <span class="text-[#BDC1C7]">Nom :</span>
-        <span class="font-medium">{{ user.name }}</span>
+    <!-- Informations utilisateur -->
+    <dl *ngIf="!loading && user" class="profile-info">
+      <div class="profile-row">
+        <dt>Nom :</dt>
+        <dd>{{ user.name }}</dd>
       </div>
 
-      <div class="flex justify-between border-b border-[#3A3F46] pb-2">
-        <span class="text-[#BDC1C7]">Email :</span>
-        <span class="font-medium">{{ user.email }}</span>
+      <div class="profile-row">
+        <dt>Email :</dt>
+        <dd>{{ user.email }}</dd>
       </div>
 
-      <div class="flex justify-between border-b border-[#3A3F46] pb-2">
-        <span class="text-[#BDC1C7]">Date de création :</span>
-        <span class="font-medium">
-          {{ user.createdAt | date:'dd/MM/yyyy à HH:mm' }}
-        </span>
+      <div class="profile-row">
+        <dt>Date de création :</dt>
+        <dd>{{ user.createdAt | date:'dd/MM/yyyy à HH:mm' }}</dd>
       </div>
 
-      <div class="flex justify-between items-center border-b border-[#3A3F46] pb-2">
-        <span class="text-[#BDC1C7]">Vérifié :</span>
-        <span
-          class="px-3 py-1 rounded-full text-sm font-semibold"
-          [ngClass]="user.isVerified ? 'bg-green-600 text-[#F3F6F7]' : 'bg-red-600 text-[#F3F6F7]'"
-        >
-          {{ user.isVerified ? 'Oui' : 'Non' }}
-        </span>
+      <div class="profile-row items-center">
+        <dt>Vérifié :</dt>
+        <dd>
+          <span
+            class="status-pill"
+            [ngClass]="user.isVerified ? 'status-verified' : 'status-unverified'"
+          >
+            {{ user.isVerified ? 'Oui' : 'Non' }}
+          </span>
+        </dd>
       </div>
-    </div>
+    </dl>
 
-    <!-- Bouton changer mot de passe -->
-    <div *ngIf="!loading && user" class="mt-6 text-center">
-        <button
-            routerLink="/profil/password-change"
-            class="bg-[#30353B] border border-[#E2A411] text-[#E2A411] font-semibold
-                px-6 py-2 rounded-lg hover:bg-[#E2A411] hover:text-[#1B1C1C]
-                transition duration-200 shadow-md"
-        >
-            Changer le mot de passe
-        </button>
-    </div>
+    <!-- Actions -->
+<div *ngIf="!loading && user" class="profile-actions">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <a routerLink="/profil/password-change" class="btn-outline p-2">Changer le mot de passe</a>
+    <a routerLink="/profil/email-change" class="btn-outline p-2">Changer d’adresse e-mail</a>
+    <a routerLink="/profil/name-change" class="btn-outline sm:col-span-2 p-2">Changer de nom</a>
+  </div>
 
-    <!-- Bouton changer d'adresse e-mail -->
-    <div *ngIf="!loading && user" class="mt-4 text-center">
-    <button
-        routerLink="/profil/email-change"
-        class="bg-[#30353B] border border-[#E2A411] text-[#E2A411] font-semibold
-            px-6 py-2 rounded-lg hover:bg-[#E2A411] hover:text-[#1B1C1C]
-            transition duration-200 shadow-md"
-    >
-        Changer d’adresse e-mail
-    </button>
-    </div>
+  <a
+    routerLink="/profil/delete-account"
+    class="btn-outline danger mt-6 w-full sm:w-auto mx-auto block text-center p-2"
+  >
+    Supprimer le compte
+  </a>
+</div>
 
-    <!-- Bouton changer de nom -->
-    <div *ngIf="!loading && user" class="mt-4 text-center">
-    <button
-        routerLink="/profil/name-change"
-        class="bg-[#30353B] border border-[#E2A411] text-[#E2A411] font-semibold
-            px-6 py-2 rounded-lg hover:bg-[#E2A411] hover:text-[#1B1C1C]
-            transition duration-200 shadow-md"
-    >
-        Changer de nom
-    </button>
-    </div>
-
-        <!-- Bouton changer de nom -->
-    <div *ngIf="!loading && user" class="mt-4 text-center">
-    <button
-        routerLink="/profil/delete-account"
-        class="bg-[#30353B] border border-[#E2A411] text-[#E2A411] font-semibold
-            px-6 py-2 rounded-lg hover:bg-[#E2A411] hover:text-[#1B1C1C]
-            transition duration-200 shadow-md"
-    >
-        Supprimer le compte
-    </button>
-    </div>
 
     <!-- Bouton déconnexion -->
-    <div *ngIf="!loading && user" class="mt-8 text-center">
-      <button
-        (click)="logout()"
-        class="bg-[#E2A411] text-[#1B1C1C] font-semibold px-6 py-2 rounded-lg hover:bg-[#f1b624] transition"
-      >
+    <div *ngIf="!loading && user" class="text-center mt-8">
+      <button (click)="logout()" class="btn-primary w-full py-2.5 font-semibold">
         Déconnexion
       </button>
     </div>
-  </div>
-</div>
+  </section>
+</main>

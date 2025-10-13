@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export abstract class AbstractRequestService {
 
-  protected baseUrl = 'http://localhost:8000';  
+  protected baseUrl = environment.apiUrl;  
   constructor(protected http : HttpClient, protected auth : AuthService, protected router : Router) { }
 
   protected request<T>(method: string, url: string, body?: any, log: boolean = true): Observable<T> {

@@ -39,7 +39,7 @@ export class LoginComponent {
       },
       error: (err) => {
         console.error('❌ Erreur de connexion :', err);
-        this.errorMessage = 'Identifiants invalides ou serveur injoignable';
+        this.errorMessage = 'Impossible de vous connecter. Vérifiez vos identifiants et réessayez.';
       }
     });
   }

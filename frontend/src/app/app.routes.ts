@@ -27,7 +27,7 @@ export const routes: Routes = [
 
   { path: 'verify', component: VerifyEmailComponent },
 
-  { path: 'home', component: HomeComponent, canActivate: [authGuard] },
+  { path: 'home', component: HomeComponent},
 
   { path: 'profil', component: ProfilComponent, canActivate: [authGuard] },
   { path: 'profil/password-change', component: EditPasswordComponent, canActivate: [authGuard] },

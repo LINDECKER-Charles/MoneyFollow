@@ -1,25 +1,20 @@
-<div class="min-h-[80vh] flex items-center justify-center bg-[#25282D] text-[#F3F6F7]">
-  <div class="w-full max-w-lg bg-[#30353B] p-8 rounded-2xl shadow-lg border border-[#3A3F46]">
-    <h2 class="text-3xl font-bold text-center mb-6 text-[#E2A411]">
-      Suppression du compte
-    </h2>
+<main class="page min-h-[80vh]">
+  <section aria-labelledby="delete-title" class="card max-w-lg w-full text-center">
+    <h1 id="delete-title" class="section-title">Suppression du compte</h1>
 
     <!-- Avertissement -->
-    <div class="bg-[#3A3F46] border-l-4 border-[#E2A411] p-4 rounded-md mb-6">
-      <p class="text-sm text-[#BDC1C7] leading-relaxed">
-        Cette action est <span class="text-[#E2A411] font-semibold">irréversible</span>.<br>
-        Toutes tes données seront définitivement supprimées.<br>
+    <div class="alert-warning mb-6">
+      <p>
+        Cette action est <span class="highlight">irréversible</span>.<br />
+        Toutes tes données seront définitivement supprimées.<br />
         Si tu es sûr de vouloir continuer, tape <strong>"I want delete"</strong> ci-dessous.
       </p>
     </div>
 
-    <!-- Étape 1 : champ de confirmation -->
+    <!-- Étape 1 : confirmation -->
     <form (ngSubmit)="openPasswordModal()" #deleteForm="ngForm" class="space-y-6">
-
-      <div>
-        <label for="confirmationText" class="block text-sm font-medium mb-1 text-[#BDC1C7]">
-          Confirmation
-        </label>
+      <div class="text-left flex flex-col gap-2">
+        <label for="confirmationText" class="label">Confirmation</label>
         <input
           type="text"
           id="confirmationText"
@@ -27,51 +22,34 @@
           [(ngModel)]="confirmationText"
           required
           placeholder='Tape "I want delete"'
-          class="w-full px-4 py-2 rounded-lg bg-[#25282D] border border-[#3A3F46]
-                 text-[#F3F6F7] placeholder-[#888C96] focus:outline-none
-                 focus:ring-2 focus:ring-[#E2A411] focus:border-transparent transition"
+          class="input mt-1"
         />
-        <p *ngIf="confirmationText && confirmationText !== 'I want delete'" class="text-red-500 text-sm mt-1">
+        <p *ngIf="confirmationText && confirmationText !== 'I want delete'" class="error-text">
           Le texte doit être exactement "I want delete".
         </p>
       </div>
 
       <!-- Bouton continuer -->
-      <div class="text-center">
-        <button
-          type="submit"
-          [disabled]="confirmationText !== 'I want delete'"
-          class="w-full py-3 rounded-lg font-bold bg-[#E2A411] text-[#1B1C1C]
-                 hover:bg-[#f1b624] transition disabled:bg-[#3A3F46]
-                 disabled:text-[#888C96] disabled:cursor-not-allowed"
-        >
-          Continuer
-        </button>
-      </div>
+      <button
+        type="submit"
+        [disabled]="confirmationText !== 'I want delete'"
+        class="btn-primary w-full py-3 font-bold"
+      >
+        Continuer
+      </button>
 
       <!-- Retour -->
-      <div class="text-center mt-3">
-        <button
-          type="button"
-          routerLink="/profil"
-          class="text-[#BDC1C7] hover:text-[#E2A411] text-sm transition"
-        >
-          ← Annuler et retourner au profil
-        </button>
-      </div>
+      <nav aria-label="Retour au profil" class="mt-3">
+        <a routerLink="/profil" class="btn-text">← Annuler et retourner au profil</a>
+      </nav>
     </form>
-  </div>
+  </section>
 
-  <!-- Étape 2 : Modale de confirmation du mot de passe -->
-  <div
-    *ngIf="showPasswordModal"
-    class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
-  >
-    <div class="bg-[#30353B] p-8 rounded-2xl shadow-2xl border border-[#3A3F46] w-full max-w-sm text-center animate-fadeIn">
-      <h3 class="text-xl font-bold text-[#E2A411] mb-4">
-        Confirmer la suppression
-      </h3>
-      <p class="text-[#BDC1C7] text-sm mb-4">
+  <!-- Étape 2 : modale -->
+  <div *ngIf="showPasswordModal" class="modal-overlay">
+    <div class="modal">
+      <h2 class="modal-title">Confirmer la suppression</h2>
+      <p class="modal-text">
         Pour confirmer la suppression de ton compte, entre ton mot de passe.
       </p>
 
@@ -81,47 +59,32 @@
         [(ngModel)]="password"
         name="password"
         placeholder="••••••••"
-        class="w-full px-4 py-2 rounded-lg bg-[#25282D] border border-[#3A3F46]
-               text-[#F3F6F7] placeholder-[#888C96] focus:outline-none
-               focus:ring-2 focus:ring-[#E2A411] focus:border-transparent transition mb-4"
+        class="input mb-3"
       />
 
-      <!-- Afficher / masquer mot de passe -->
-      <div class="text-right mb-4">
-        <button
-          type="button"
-          (click)="showPassword = !showPassword"
-          class="text-sm text-[#E2A411] hover:underline"
-        >
-          {{ showPassword ? 'Masquer' : 'Afficher' }}
-        </button>
+      <!-- Toggle visibilité -->
+      <button type="button" (click)="showPassword = !showPassword" class="btn-text text-sm mb-4">
+        {{ showPassword ? 'Masquer' : 'Afficher' }}
+      </button>
+
+      <!-- Erreur -->
+      <div *ngIf="error" class="alert-error mb-4">
+        {{ error }}
       </div>
 
-        <div *ngIf="error" class="bg-red-900/40 border border-red-700 text-red-400 text-sm px-3 py-2 rounded-md mb-4">
-            {{ error }}
-        </div>
-
-      <!-- Boutons -->
+      <!-- Actions -->
       <div class="flex justify-between">
-        <button
-          type="button"
-          (click)="closePasswordModal()"
-          class="px-4 py-2 rounded-lg font-semibold text-[#BDC1C7] bg-[#3A3F46]
-                 hover:bg-[#444] transition"
-        >
+        <button type="button" (click)="closePasswordModal()" class="btn-outline p-2">
           Annuler
         </button>
-
         <button
           (click)="confirmDeletion()"
           [disabled]="!password"
-          class="px-4 py-2 rounded-lg font-bold text-[#F3F6F7] bg-red-600
-                 hover:bg-red-700 transition disabled:bg-[#3A3F46]
-                 disabled:text-[#888C96] disabled:cursor-not-allowed"
+          class="btn-danger"
         >
           Supprimer
         </button>
       </div>
     </div>
   </div>
-</div>
+</main>

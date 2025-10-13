@@ -1,62 +1,48 @@
-<nav class="w-full bg-[#30353B] text-[#F3F6F7] shadow-lg">
-  <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-    <!-- Logo / Titre -->
-    <a routerLink="/" class="text-2xl font-bold text-[#E2A411] hover:text-[#f1b624] transition">
+<header class="navbar" role="banner">
+  <div class="nav-container">
+    <a routerLink="/" class="nav-logo">
       MoneyFollow
     </a>
 
-    <!-- Liens de navigation -->
-    <div class="flex space-x-6">
-      <a
-        routerLink="/home"
-        routerLinkActive="text-[#E2A411] border-b-2 border-[#E2A411]"
-        class="hover:text-[#E2A411] transition pb-1"
-      >
-        Accueil
-      </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <ul class="flex space-x-6 items-center">
+        <li>
+          <a routerLink="/home" routerLinkActive="nav-link-active" class="nav-link">
+            Accueil
+          </a>
+        </li>
+        <li>
+          <a routerLink="/about" routerLinkActive="nav-link-active" class="nav-link">
+            À propos
+          </a>
+        </li>
 
-      <a
-        routerLink="/about"
-        routerLinkActive="text-[#E2A411] border-b-2 border-[#E2A411]"
-        class="hover:text-[#E2A411] transition pb-1"
-      >
-        À propos
-      </a>
+        <!-- Si utilisateur connecté -->
+        <ng-container *ngIf="isLoggedIn; else guestLinks">
+          <li>
+            <a routerLink="/profil" routerLinkActive="nav-link-active" class="nav-link">
+              Profil
+            </a>
+          </li>
+          <li>
+            <button (click)="logout()" class="btn-logout">Déconnexion</button>
+          </li>
+        </ng-container>
 
-      <!-- Si utilisateur connecté -->
-      <ng-container *ngIf="isLoggedIn; else guestLinks">
-        <a
-          routerLink="/profil"
-          routerLinkActive="text-[#E2A411] border-b-2 border-[#E2A411]"
-          class="hover:text-[#E2A411] transition pb-1"
-        >
-          Profil
-        </a>
-        <button
-          (click)="logout()"
-          class="bg-[#E2A411] text-[#1B1C1C] font-semibold px-3 py-1 rounded-lg hover:bg-[#f1b624] transition"
-        >
-          Déconnexion
-        </button>
-      </ng-container>
-
-      <!-- Si utilisateur non connecté -->
-      <ng-template #guestLinks>
-        <a
-          routerLink="/login"
-          routerLinkActive="text-[#E2A411] border-b-2 border-[#E2A411]"
-          class="hover:text-[#E2A411] transition pb-1"
-        >
-          Connexion
-        </a>
-        <a
-          routerLink="/register"
-          routerLinkActive="text-[#E2A411] border-b-2 border-[#E2A411]"
-          class="hover:text-[#E2A411] transition pb-1"
-        >
-          Inscription
-        </a>
-      </ng-template>
-    </div>
+        <!-- Si utilisateur non connecté -->
+        <ng-template #guestLinks>
+          <li>
+            <a routerLink="/login" routerLinkActive="nav-link-active" class="nav-link">
+              Connexion
+            </a>
+          </li>
+          <li>
+            <a routerLink="/register" routerLinkActive="nav-link-active" class="nav-link">
+              Inscription
+            </a>
+          </li>
+        </ng-template>
+      </ul>
+    </nav>
   </div>
-</nav>
+</header>
