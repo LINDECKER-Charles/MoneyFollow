@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserRequestService } from 'src/app/services/request/user-request.service';
+import { ValidationService } from 'src/app/services/utils/validation.service';
 
 @Component({
   selector: 'app-edit-password',
@@ -21,7 +22,7 @@ export class EditPasswordComponent {
   public showPassword: boolean = false;
   public showConfirm: boolean = false;
 
-  constructor(private userRequest: UserRequestService, private authService: AuthService, private router: Router) { }
+  constructor(private userRequest: UserRequestService, private router: Router, private validate: ValidationService) { }
 
   public toggleShowPassword(): void {
     this.showPassword = !this.showPassword;
@@ -31,6 +32,10 @@ export class EditPasswordComponent {
   }
 
   public onSubmit(): void {
+    if(!this.validate.validPassword(this.password)){
+      this.error = "Mot de passe trop faible.";
+      return;
+    }
     this.userRequest.patchUserPassword(this.password).subscribe({
       next: (response) => {
         this.router.navigate(['/profil']);
