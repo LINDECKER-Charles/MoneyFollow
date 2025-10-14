@@ -1062,7 +1062,7 @@ hotfix/*      # Corrections urgentes
 
 ## 📄 Licence
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+Ce projet est sous licence MIT.
 
 ```
 MIT License
@@ -1092,9 +1092,8 @@ SOFTWARE.
 
 Pour toute question ou problème :
 
-- **Issues GitHub** : [Créer une issue](https://github.com/votre-username/MoneyFollow/issues)
-- **Email** : support@moneyfollow.com
-- **Documentation** : [Wiki du projet](https://github.com/votre-username/MoneyFollow/wiki)
+- **Issues GitHub** : [Créer une issue](https://github.com/LINDECKER-Charles/MoneyFollow/issues)
+- **Email** : charles.lindecker@outlook.fr
 
 ---
 
@@ -1102,8 +1101,8 @@ Pour toute question ou problème :
 
 **💰 MoneyFollow - Suivez vos dépenses, maîtrisez votre budget**
 
-[![GitHub stars](https://img.shields.io/github/stars/votre-username/MoneyFollow?style=social)](https://github.com/votre-username/MoneyFollow)
-[![GitHub forks](https://img.shields.io/github/forks/votre-username/MoneyFollow?style=social)](https://github.com/votre-username/MoneyFollow)
-[![GitHub issues](https://img.shields.io/github/issues/votre-username/MoneyFollow)](https://github.com/votre-username/MoneyFollow/issues)
+[![GitHub stars](https://img.shields.io/github/stars/LINDECKER-Charles/MoneyFollow?style=social)](https://github.com/LINDECKER-Charles/MoneyFollow)
+[![GitHub forks](https://img.shields.io/github/forks/LINDECKER-Charles/MoneyFollow?style=social)](https://github.com/LINDECKER-Charles/MoneyFollow)
+[![GitHub issues](https://img.shields.io/github/issues/LINDECKER-Charles/MoneyFollow)](https://github.com/LINDECKER-Charles/MoneyFollow/issues)
 
 </div>
