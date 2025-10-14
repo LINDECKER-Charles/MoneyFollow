@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.moneyfollow.model.User;
 import com.moneyfollow.repository.UserRepository;
 import com.moneyfollow.repository.VerificationTokenRepository;
+import com.moneyfollow.security.RateLimited;
 import com.moneyfollow.security.VerificationService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class VerificationController {
     private final VerificationService verificationService;
     private final UserRepository userRepository;
 
+    @RateLimited(limit = 5, durationSeconds = 200)
     @GetMapping("/verify")
     public ResponseEntity<Map<String, Object>> verifyUser(@RequestParam String token) {
         var verificationToken = tokenRepository.findByToken(token)
@@ -45,6 +47,7 @@ public class VerificationController {
         return ResponseEntity.ok(Map.of("message", "Adresse e-mail vérifiée avec succès !"));
     }
 
+    @RateLimited(limit = 3, durationSeconds = 1200)
     @PostMapping("/send-verify")
     public ResponseEntity<Map<String, Object>> sendVerifyMail(@AuthenticationPrincipal User user) {
         if (user == null) {
