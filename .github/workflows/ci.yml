@@ -57,14 +57,3 @@ jobs:
       - name: Build Frontend
         working-directory: ./frontend
         run: npm run build --prod
-
-      # --- Intégration du frontend dans le backend ---
-      - name: Copy Frontend to Backend
-        run: |
-          mkdir backend/src/main/ressources/static
-          cp -r frontend/dist/moneyfollow-frontend/* backend/src/main/resources/static/
-
-      # --- Package final du backend ---
-      - name: Package Backend (Final Jar)
-        working-directory: ./backend
-        run: mvn package -DskipTests
