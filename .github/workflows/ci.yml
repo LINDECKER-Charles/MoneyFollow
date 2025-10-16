@@ -62,7 +62,7 @@ jobs:
       - name: Copy Frontend to Backend
         run: |
           rm -rf backend/src/main/resources/static/*
-          cp -r frontend/dist/frontend/* backend/src/main/resources/static/
+          cp -r frontend/dist/moneyfollow-frontend/* backend/src/main/resources/static/
 
       # --- Package final du backend ---
       - name: Package Backend (Final Jar)
