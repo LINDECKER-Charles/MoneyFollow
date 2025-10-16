@@ -61,7 +61,7 @@ jobs:
       # --- Intégration du frontend dans le backend ---
       - name: Copy Frontend to Backend
         run: |
-          rm -rf backend/src/main/resources/static/*
+          mkdir backend/src/main/ressources/static
           cp -r frontend/dist/moneyfollow-frontend/* backend/src/main/resources/static/
 
       # --- Package final du backend ---
