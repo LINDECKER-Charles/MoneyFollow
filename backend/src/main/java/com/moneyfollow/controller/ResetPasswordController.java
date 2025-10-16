@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.moneyfollow.model.User;
 import com.moneyfollow.repository.ResetTokenRepository;
 import com.moneyfollow.repository.UserRepository;
+import com.moneyfollow.security.RateLimited;
 import com.moneyfollow.security.ResetPasswordService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,7 @@ public class ResetPasswordController {
     private final ResetPasswordService resetPasswordService;
     private final ResetTokenRepository tokenRepository;
 
+    @RateLimited(limit = 5, durationSeconds = 300)
     @PostMapping("/reset-password")
     public ResponseEntity<Map<String, Object>> verifyUser(@RequestParam String token, @RequestParam String newPassword) {
         var verificationToken = tokenRepository.findByToken(token)
@@ -47,6 +49,7 @@ public class ResetPasswordController {
         return ResponseEntity.ok(Map.of("message", "Mot de passe réinitialisé avec succès !"));
     }
 
+    @RateLimited(limit = 2, durationSeconds = 600)
     @PostMapping("/send-reset-password")
     public ResponseEntity<Map<String, Object>> sendVerifyMail(@RequestParam String email) {
         User user = userRepository.findByEmail(email)

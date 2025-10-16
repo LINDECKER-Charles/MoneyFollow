@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserRequestService } from 'src/app/services/request/user-request.service';
+import { ValidationService } from 'src/app/services/utils/validation.service';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +26,7 @@ export class RegisterComponent {
   public errorMessage: string = '';
   
 
-  constructor(private authService: AuthService, private router: Router, private UserRequestService: UserRequestService) {}
+  constructor(private authService: AuthService, private router: Router, private UserRequestService: UserRequestService, private validate: ValidationService) {}
  
   public togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -35,7 +36,12 @@ export class RegisterComponent {
   }
 
   public onSubmit(): void {
-    if (this.notTakenEmail() || this.notSamePassword() || this.notValidPassword() || this.notValidEmail()) {
+    if(!this.validate.validEmail(this.email)){
+      this.errorMessage = "Email invalide.";
+      return;
+    }
+    if(!this.validate.validPassword(this.password)){
+      this.errorMessage = "Mot de passe trop faible.";
       return;
     }
 
@@ -46,53 +52,26 @@ export class RegisterComponent {
       },
       error: (err) => {
         console.error('❌ Erreur lors de l\'inscription :', err);
-        this.errorMessage = 'Erreur lors de l\'inscription : email peut-être déjà utilisé ou serveur injoignable';
+        this.errorMessage = 'Email déjà pris';
       }
     });
   }
 
-  private notSamePassword(): boolean{
-    if(this.password !== this.passwordConfirm){
-      this.errorMessage = "Les mots de passe ne correspondent pas.";
-      return true;
-    }
-    return false;
-  }
-
-  private notValidPassword(): boolean{
+  private notValidPassword(password: string): boolean{
     const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-    if(!strongPasswordRegex.test(this.password)){
+    if(!strongPasswordRegex.test(password)){
       this.errorMessage = 'Le mot de passe doit contenir au minimum 8 caractères, avec une majuscule, une minuscule, un chiffre et un symbole.';
       return true;
     }
     return false;
   }
 
-  private notValidEmail(): boolean{
+  private notValidEmail(email: string): boolean{
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    if(!emailRegex.test(this.email)){
+    if(!emailRegex.test(email)){
       this.errorMessage = "L'adresse e-mail n'est pas valide.";
       return true;
     }
-    return false;
-  }
-
-  private notTakenEmail(): boolean{
-    this.UserRequestService.getEmailAvailability(this.email).subscribe({
-      next: (reponse) => {
-        console.log(reponse);
-        if(reponse.available !== true){
-          this.errorMessage = "L'adresse e-mail est déjà prise.";
-          return true;
-        }else{
-          return false;
-        }
-      },
-      error: (err) => {
-          console.log(err);
-          return false;
-      },
-    })
     return false;
   }
 }

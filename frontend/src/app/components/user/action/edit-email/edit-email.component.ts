@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserRequestService, User } from 'src/app/services/request/user-request.service';
+import { ValidationService } from 'src/app/services/utils/validation.service';
 
 @Component({
   selector: 'app-edit-email',
@@ -25,11 +26,9 @@ export class EditEmailComponent {
   public showConfirmModal: boolean = false;
   public showSuccessModal: boolean = false;
 
-  
-
   public error: string | null = null;
 
-  constructor(private userRequest: UserRequestService, private router: Router, private auth: AuthService) {}
+  constructor(private userRequest: UserRequestService, private router: Router, private auth: AuthService, private validate: ValidationService) {}
 
   checkEmailAvailability(): void {
     this.checking = true;
@@ -39,6 +38,11 @@ export class EditEmailComponent {
     }
 
     this.checkTimeout = setTimeout(() => {
+      if(!this.validate.validEmail(this.newEmail)){
+        this.error = "Email invalide";
+        this.checking = false;
+        return;
+      }
       this.userRequest.getEmailAvailability(this.newEmail).subscribe({
         next: (response) => {
           response ? this.emailTaken = true : this.emailTaken = false;
@@ -79,7 +83,6 @@ export class EditEmailComponent {
                 this.auth.login(this.newEmail, this.confirmPassword).subscribe({
                   next: () => {
                     this.showSuccessModal = true;
-                    localStorage.removeItem('isVerified');
                   },
                   error: (err) => {
                     console.log(err);

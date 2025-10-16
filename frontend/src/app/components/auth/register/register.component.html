@@ -186,7 +186,10 @@
 
       <!-- Messages d’erreur -->
       <p *ngIf="errorMessage" class="error-text">{{ errorMessage }}</p>
-
+        <p *ngIf="password && passwordConfirm && password !== passwordConfirm"
+         class="error-text">
+        Les mots de passe ne correspondent pas.
+      </p>
       <!-- Bouton -->
       <button
         type="submit"

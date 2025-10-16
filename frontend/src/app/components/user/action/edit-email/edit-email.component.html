@@ -17,8 +17,14 @@
           class="input mt-1"
         />
 
+        <div *ngIf="error" class="mt-2 text-sm">
+          <span *ngIf="error" class="text-red-500 font-medium">
+            {{ error }}
+          </span>
+
+        </div>
         <!-- Validation dynamique -->
-        <div *ngIf="newEmail" class="mt-2 text-sm">
+        <div *ngIf="newEmail && !error" class="mt-2 text-sm">
           <span *ngIf="checking" class="text-neutral-400 italic">Vérification en cours...</span>
           <span *ngIf="!checking && emailTaken" class="text-red-500 font-medium">
             Cette adresse e-mail est déjà utilisée.
