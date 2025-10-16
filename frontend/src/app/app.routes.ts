@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HomeComponent } from './components/misc/home/home.component';
-import { NoAuthGuard } from './guards/no-auth.guard';
+import { noAuthGuard } from './guards/no-auth.guard';
 import { AboutComponent } from './components/misc/about/about.component';
 import { ProfilComponent } from './components/user/profil/profil.component';
 import { EditPasswordComponent } from './components/user/action/edit-password/edit-password.component';
@@ -19,11 +19,11 @@ import { ResetPasswordComponent } from './components/auth/reset-password/reset-p
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
-  { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
-  { path: 'register', component: RegisterComponent, canActivate: [NoAuthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [noAuthGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [noAuthGuard] },
   { path: 'check-email', component: ConfirmEmailComponent, canActivate: [noVerifiedGuard] },
-  { path: 'send-reset-password', component: ForgotPasswordComponent, canActivate: [NoAuthGuard] },
-  { path: 'reset', component: ResetPasswordComponent, canActivate: [NoAuthGuard] },
+  { path: 'send-reset-password', component: ForgotPasswordComponent, canActivate: [noAuthGuard] },
+  { path: 'reset', component: ResetPasswordComponent, canActivate: [noAuthGuard] },
 
   { path: 'verify', component: VerifyEmailComponent },
 
