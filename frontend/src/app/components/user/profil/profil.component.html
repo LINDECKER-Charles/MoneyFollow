@@ -44,20 +44,20 @@
     </dl>
 
     <!-- Actions -->
-<div *ngIf="!loading && user" class="profile-actions">
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-    <a routerLink="/profil/password-change" class="btn-outline p-2">Changer le mot de passe</a>
-    <a routerLink="/profil/email-change" class="btn-outline p-2">Changer d’adresse e-mail</a>
-    <a routerLink="/profil/name-change" class="btn-outline sm:col-span-2 p-2">Changer de nom</a>
-  </div>
+    <div *ngIf="!loading && user" class="profile-actions">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a routerLink="/profil/password-change" class="btn-outline p-2">Changer le mot de passe</a>
+        <a routerLink="/profil/email-change" class="btn-outline p-2">Changer d’adresse e-mail</a>
+        <a routerLink="/profil/name-change" class="btn-outline sm:col-span-2 p-2">Changer de nom</a>
+      </div>
 
-  <a
-    routerLink="/profil/delete-account"
-    class="btn-outline danger mt-6 w-full sm:w-auto mx-auto block text-center p-2"
-  >
-    Supprimer le compte
-  </a>
-</div>
+      <a
+        routerLink="/profil/delete-account"
+        class="btn-outline danger mt-6 w-full sm:w-auto mx-auto block text-center p-2"
+      >
+        Supprimer le compte
+      </a>
+    </div>
 
 
     <!-- Bouton déconnexion -->
